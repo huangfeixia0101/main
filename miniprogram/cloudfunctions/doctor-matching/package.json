@@ -1,0 +1,10 @@
+{
+  "name": "doctor-matching",
+  "version": "1.0.0",
+  "description": "智能医生匹配云函数",
+  "main": "index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

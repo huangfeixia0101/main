@@ -1,0 +1,136 @@
+<view class="container">
+  <!-- 服务图片 -->
+  <swiper class="service-images" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+    <swiper-item wx:for="{{serviceDetail.images}}" wx:key="index" wx:if="{{index > 0}}">
+      <image src="{{item}}" mode="aspectFit"/>
+    </swiper-item>
+  </swiper>
+
+  <!-- 服务基本信息 -->
+  <view class="service-info">
+    <view class="service-header">
+      <text class="name">{{serviceDetail.name}}</text>
+    </view>
+    <view class="brief">{{serviceDetail.brief}}</view>
+  </view>
+
+  <!-- 服务详情 -->
+  <view class="detail-section">
+    <view class="section-title">服务详情</view>
+    <view class="detail-content">
+      <rich-text nodes="{{serviceDetail.description}}"></rich-text>
+    </view>
+  </view>
+
+  <!-- 服务保障 -->
+  <view class="guarantee-section">
+    <view class="section-title">服务保障</view>
+    <view class="guarantee-list">
+      <view class="guarantee-item" wx:for="{{guarantees}}" wx:key="id">
+        <image src="{{item.icon}}" mode="aspectFit"/>
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view class="notice-section" wx:if="{{serviceDetail.notices}}">
+    <view class="section-title">注意事项</view>
+    <view class="notice-list">
+      <view class="notice-item" wx:for="{{serviceDetail.notices}}" wx:key="index">
+        <text class="dot">•</text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务评价 -->
+  <view class="evaluation-section">
+    <view class="section-title">服务评价</view>
+    <view class="evaluation-content" wx:if="{{evaluations && evaluations.length > 0}}">
+      <view class="evaluation-summary">
+        <view class="average-rating">
+          <text class="rating-number">{{averageRating}}</text>
+          <text class="rating-text">综合评分</text>
+        </view>
+        <view class="rating-distribution">
+          <view class="rating-bar" wx:for="{{ratingDistribution}}" wx:key="rating">
+            <text class="rating-label">{{item.rating}}星</text>
+            <view class="bar-container">
+              <view class="bar-fill" style="width: {{item.percentage + '%'}}"></view>
+            </view>
+            <text class="rating-count">{{item.count}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="evaluation-list">
+        <view class="evaluation-item" wx:for="{{evaluations}}" wx:key="_id">
+          <view class="user-info">
+            <image class="user-avatar" src="{{item.userInfo.avatarUrl || '/images/avatar.png'}}" mode="aspectFill"></image>
+            <text class="user-name">{{item.isAnonymous ? '匿名用户' : item.userInfo.nickName}}</text>
+          </view>
+          <view class="rating-info">
+            <view class="stars">
+              <view class="star {{ item.rating >= starIndex + 1 ? 'active' : ''}}" 
+              wx:for="{{5}}" 
+              wx:for-item="starItem" 
+              wx:for-index="starIndex" 
+              wx:key="starIndex"></view>
+            </view>
+          </view>
+          <view class="comment" wx:if="{{item.comment}}">
+            <text>{{item.comment}}</text>
+          </view>
+          <view class="evaluation-images" wx:if="{{item.images.length > 0}}">
+            <image wx:for="{{item.images}}" wx:key="index" wx:for-item="imageUrl" src="{{imageUrl}}" mode="aspectFill" bindtap="previewImage" data-urls="{{item.images}}" data-current="{{imageUrl}}"></image>
+          </view>
+        </view>
+      </view>
+      <view class="load-more" wx:if="{{hasMoreEvaluations}}" bindtap="loadMoreEvaluations">
+        <text>查看更多评价</text>
+      </view>
+    </view>
+    <view class="no-evaluation" wx:elif="{{!evaluations || evaluations.length === 0}}">
+      <text>暂无评价信息</text>
+    </view>
+  </view>
+  <!-- 服务规格选择 -->
+  <view class="specs-section">
+    <view class="section-title">规格选择</view>
+    <view class="specs-list">
+      <view class="spec-item {{selectedSpec === item.name ? 'selected' : ''}}" 
+            wx:for="{{serviceDetail.specs}}" 
+            wx:key="name" 
+            bindtap="handleSpecSelect" 
+            data-spec="{{item.name}}">
+        <text class="spec-size">{{item.name}}</text>
+        <text class="spec-price">¥{{item.price}}</text>
+      </view>
+    </view>
+    <!-- 服务条款同意 -->
+    <view class="agreement-section">
+      <checkbox-group bindchange="onAgreementChange">
+        <checkbox value="agreed" style="transform: scale(0.9);"></checkbox>
+        <text style="font-size: 28rpx; color: #666; margin-right: 6rpx;">我已认真阅读并同意</text>
+        <navigator url="/pages/service-detail/agreement/agreement" class="agreement-link">《服务条款同意书》</navigator>
+      </checkbox-group>
+    </view>
+  </view>
+  <!-- 底部购买栏 -->
+  <view class="bottom-bar">
+    <view class="quantity-section">
+      <text class="quantity-label">数量</text>
+      <view class="quantity-control">
+        <text class="quantity-btn {{quantity <= 1 ? 'disabled' : ''}}" bindtap="handleQuantityDecrease">-</text>
+        <text class="quantity-value">{{quantity}}</text>
+        <text class="quantity-btn" bindtap="handleQuantityIncrease">+</text>
+      </view>
+    </view>
+    <button class="buy-btn" bindtap="handleBuy">
+      <text class="btn-text">立即下单</text>
+      <text class="btn-price">¥{{totalPrice}}</text>
+    </button>
+  </view>
+</view>
+
+<view class="empty-tip" wx:if="{{!serviceDetail}}">服务不存在或已下架</view>

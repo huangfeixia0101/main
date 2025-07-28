@@ -1,0 +1,204 @@
+<view class="user-container">
+  <!-- 用户信息区域 -->
+  <view class="user-info">
+    <view class="avatar-section">
+      <image class="avatar" src="{{userInfo.tempAvatarUrl || userInfo.avatarUrl || '/images/avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <text class="login-text">{{isLogin && userInfo ? userInfo.maskedPhoneNumber : '立即登录'}}</text>
+        <text class="login-desc" bindtap="{{isLogin ? 'goToEditProfile' : 'goToLogin'}}">{{isLogin ? '编辑资料' : '登录享更多功能'}}</text>
+      </view>
+    </view>
+    
+    <!-- 患者用户显示VIP信息 -->
+    <view class="vip-section" wx:if="{{isLogin && userType === 'patient'}}">
+      <view class="vip-card">
+        <image class="vip-icon" src="/images/icons/vip.png"></image>
+        <text>贵宾VIP</text>
+      </view>
+      <view class="rights-bag">
+        <image class="bag-icon" src="/images/icons/bag.png"></image>
+        <text>我的权益包</text>
+        <text class="count">0</text>
+      </view>
+    </view>
+    
+    <!-- 陪护人员显示服务状态 -->
+    <view class="status-section" wx:if="{{isLogin && userType === 'escort'}}">
+      <view class="status-card">
+        <image class="status-icon" src="/images/icons/star.png"></image>
+        <text>服务评分</text>
+        <text class="rating">4.9</text>
+      </view>
+      <view class="order-count">
+        <image class="count-icon" src="/images/icons/order.png"></image>
+        <text>服务订单</text>
+        <text class="count">28</text>
+      </view>
+    </view>
+    
+    <!-- 管理员显示管理状态 -->
+    <view class="admin-section" wx:if="{{isLogin && isAdmin}}">
+      <view class="admin-card">
+        <image class="admin-icon" src="/images/icons/admin.png"></image>
+        <text>管理员</text>
+      </view>
+      <view class="system-status">
+        <image class="system-icon" src="/images/icons/system.png"></image>
+        <text>系统状态</text>
+        <text class="status">正常</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单管理 - 患者视图 -->
+  <view class="order-section" wx:if="{{!isAdmin && (userType === 'patient' || !isLogin)}}">
+    <view class="section-header">
+      <text class="title">我的订单</text>
+      <view class="view-all" bindtap="goToAllOrders">
+        <text>全部订单</text>
+        <image src="/images/rightarrow.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="order-types">
+      <view class="order-type" bindtap="goToUnpaidOrders">
+        <image src="/images/icons/wallet.png"></image>
+        <text>待支付</text>
+      </view>
+      <view class="order-type" bindtap="goToInServiceOrders">
+        <image src="/images/icons/process.png"></image>
+        <text>进行中</text>
+      </view>
+      <view class="order-type" bindtap="goToCompletedOrders">
+        <image src="/images/icons/complete.png"></image>
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单管理 - 陪护人员视图 -->
+  <view class="order-section" wx:if="{{isLogin && userType === 'escort'}}">
+    <view class="section-header">
+      <text class="title">订单管理</text>
+      <view class="view-all" bindtap="goToAllOrders">
+        <text>全部订单</text>
+        <image src="/images/rightarrow.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="order-types">
+      <view class="order-type" bindtap="goToNewOrders">
+        <image src="/images/icons/new-order.png"></image>
+        <text>新订单</text>
+      </view>
+      <view class="order-type" bindtap="goToInServiceOrders">
+        <image src="/images/icons/process.png"></image>
+        <text>进行中</text>
+      </view>
+      <view class="order-type" bindtap="goToCompletedOrders">
+        <image src="/images/icons/complete.png"></image>
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 管理员控制面板 -->
+  <view class="admin-panel" wx:if="{{isLogin && isAdmin}}">
+    <view class="section-header">
+      <text class="title">系统管理</text>
+    </view>
+    <view class="admin-grid">
+      <view class="admin-item" bindtap="goToUserManagement">
+        <image src="/images/icons/users.png"></image>
+        <text>用户管理</text>
+      </view>
+      <view class="admin-item" bindtap="goToOrderManagement">
+        <image src="/images/icons/orders.png"></image>
+        <text>订单管理</text>
+      </view>
+      <view class="admin-item" bindtap="goToServiceManagement">
+        <image src="/images/icons/services.png"></image>
+        <text>服务管理</text>
+      </view>
+      <view class="admin-item" bindtap="goToStatistics">
+        <image src="/images/icons/stats.png"></image>
+        <text>数据统计</text>
+      </view>
+      <view class="admin-item" bindtap="goToExtraEarnings">
+        <image src="/images/icons/wallet.png"></image>
+        <text>额外薪酬</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务中心 - 患者视图 -->
+  <view class="service-section" wx:if="{{!isAdmin && (userType === 'patient' || !isLogin)}}">
+    <text class="section-title">服务中心</text>
+    <view class="service-grid">
+      <view class="service-item" bindtap="navigateToCoupons">
+        <image src="/images/icons/coupon.png"></image>
+        <text>优惠券</text>
+      </view>
+      <view class="service-item" bindtap="navigateToPoints">
+        <image src="/images/icons/points.png"></image>
+        <text>积分中心</text>
+      </view>
+      <view class="service-item" bindtap="navigateToRedeem">
+        <image src="/images/icons/exchange.png"></image>
+        <text>兑换</text>
+      </view>
+      <view class="service-item" bindtap="goToAddressManage">
+        <image src="/images/icons/location.png"></image>
+        <text>地址管理</text>
+      </view>
+      <view class="service-item" bindtap="goToPatientManage">
+        <image src="/images/icons/user-manage.png"></image>
+        <text>服务对象管理</text>
+      </view>
+      <view class="service-item">
+        <button class="contact-button" open-type="contact" bindtap="contactCustomerService">
+          <image src="/images/customer-service.png"></image>
+          <text>客服咨询</text>
+        </button>
+      </view>
+      <view class="service-item" bindtap="goToAboutUs">
+        <image src="/images/icons/aboutus.png"></image>
+        <text>关于我们</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务中心 - 陪护人员视图 -->
+  <view class="service-section" wx:if="{{isLogin && userType === 'escort'}}">
+    <text class="section-title">服务中心</text>
+    <view class="service-grid">
+      <view class="service-item" bindtap="navigateToSchedule">
+        <image src="/images/icons/schedule.png"></image>
+        <text>排班管理</text>
+      </view>
+      <view class="service-item" bindtap="navigateToEarnings">
+        <image src="/images/icons/wallet.png"></image>
+        <text>收益统计</text>
+      </view>
+      <view class="service-item" bindtap="navigateToRatings" wx:if="{{isLogin && userType === 'escort'}}">        <image src="/images/icons/star.png"></image>
+        <text>服务评价</text>
+      </view>
+      <view class="service-item" bindtap="navigateToTraining">
+        <image src="/images/icons/training.png"></image>
+        <text>培训中心</text>
+      </view>
+      <view class="service-item">
+        <button class="contact-button" open-type="contact" bindtap="contactCustomerService">
+          <image src="/images/customer-service.png"></image>
+          <text>客服咨询</text>
+        </button>
+      </view>
+      <view class="service-item" bindtap="goToAboutUs">
+        <image src="/images/icons/aboutus.png"></image>
+        <text>关于我们</text>
+      </view>
+    </view>
+  </view>
+  <!-- 退出登录按钮 -->
+  <view class="logout-section" wx:if="{{isLogin}}">
+    <button class="logout-btn" bindtap="handleLogout">退出登录</button>
+  </view>
+</view>

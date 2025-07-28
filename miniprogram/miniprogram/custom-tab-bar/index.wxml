@@ -1,0 +1,18 @@
+<view class="tab-bar">
+  <view class="tab-bar-item {{selected === 0 ? 'active' : ''}}" data-index="0" bindtap="switchTab">
+    <image class="icon" src="{{selected === 0 ? '../images/home-active.png' : '../images/home.png'}}"></image>
+    <view class="text" style="color: {{selected === 0 ? '#7B68EE' : '#8A8A8A'}}">首页</view>
+  </view>
+  <view class="tab-bar-item {{selected === 1 ? 'active' : ''}}" data-index="1" bindtap="switchTab">
+    <image class="icon" src="{{selected === 1 ? '../images/services-active.png' : '../images/services.png'}}"></image>
+    <view class="text" style="color: {{selected === 1 ? '#7B68EE' : '#8A8A8A'}}">服务</view>
+  </view>
+  <view class="tab-bar-item {{selected === 2 ? 'active' : ''}}" data-index="2" bindtap="switchTab">
+    <image class="icon" src="{{selected === 2 ? '../images/order-active.png' : '../images/order.png'}}"></image>
+    <view class="text" style="color: {{selected === 2 ? '#7B68EE' : '#8A8A8A'}}">订单</view>
+  </view>
+  <view class="tab-bar-item {{selected === 3 ? 'active' : ''}}" data-index="3" bindtap="switchTab">
+    <image class="icon" src="{{selected === 3 ? '../images/user-active.png' : '../images/user.png'}}"></image>
+    <view class="text" style="color: {{selected === 3 ? '#7B68EE' : '#8A8A8A'}}">我的</view>
+  </view>
+</view>

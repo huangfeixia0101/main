@@ -1,0 +1,92 @@
+<view class="chat-container">
+  <view class="chat-header">
+    <text class="title">🩺 智能医生匹配</text>
+    <text class="subtitle">✨ 描述您的需求，AI为您匹配最合适的医生</text>
+  </view>
+  
+  <scroll-view class="chat-messages" scroll-y="{{true}}" scroll-top="{{scrollTop}}">
+    <view wx:for="{{messages}}" wx:key="index" class="message-item">
+      <view class="message {{item.role === 'user' ? 'user-message' : 'ai-message'}}">
+        <text>{{item.content}}</text>
+      </view>
+      
+      <!-- 医生匹配卡片 -->
+      <view wx:if="{{item.doctors && item.doctors.length > 0}}" class="doctor-recommendations">
+        <text class="recommendations-title">🎯 为您匹配以下医生</text>
+        <view wx:for="{{item.doctors}}" wx:for-item="doctor" wx:key="_id" 
+              class="doctor-card" bindtap="selectDoctor" data-doctor="{{doctor}}">
+          <view class="doctor-info">
+            <view class="doctor-header">
+              <text class="doctor-name">{{doctor.name}} {{doctor.title}}</text>
+              <view class="doctor-badge">匹配</view>
+            </view>
+            <text class="doctor-hospital">🏥 {{doctor.hospital}} · {{doctor.department}}</text>
+            <text class="doctor-specialty">🔬 擅长：{{doctor.specialties}}</text>
+            <text class="recommend-reason"> 匹配理由：{{doctor.recommendReason}}</text>
+            <text wx:if="{{doctor.study_report}}" class="study-report">📊 研究报告：{{doctor.study_report}}</text>
+            <view class="doctor-meta">
+              <view class="rating">{{doctor.rating}}</view>
+              <view class="match-score">{{doctor.matchScore}}%</view>
+            </view>
+
+            
+
+          </view>
+          <view class="card-action">
+            <text class="action-text">代办预约</text>
+            <text class="action-arrow">→</text>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 服务匹配卡片 -->
+      <view wx:if="{{item.doctors && item.doctors.length === 0}}" class="service-recommendations">
+        <text class="recommendations-title">🎯 为您匹配医生服务</text>
+        <view class="service-card" bindtap="selectService">
+          <view class="service-info">
+            <view class="service-header">
+              <text class="service-name">{{item.recommendedService.serviceName}}</text>
+              <view class="service-badge">匹配</view>
+            </view>
+            <text class="service-description">🔍 专业的医生匹配服务，为您精准匹配合适的医生</text>
+            <text class="service-reason">💡 匹配理由：根据您的需求，为您进行专属的医生匹配调研</text>
+          </view>
+          <view class="card-action">
+            <text class="action-text">点击使用</text>
+            <text class="action-arrow">→</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading-message">
+      <view class="loading-content">
+        <view class="loading-spinner"></view>
+        <text class="loading-text">{{loadingStatus}}</text>
+        <!-- 进度条 -->
+        <view wx:if="{{showProgress}}" class="progress-container">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+          </view>
+          <text class="progress-text">{{progressPercent}}%</text>
+        </view>
+        <!-- 倒计时显示 -->
+        <view wx:if="{{showCountdown}}" class="countdown-container">
+          <view class="countdown-circle">
+            <text class="countdown-number">{{countdown}}</text>
+          </view>
+          <text class="countdown-text">秒后完成(预估)</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <view class="chat-input">
+    <input class="input-field" placeholder="💬 请描述您的诉求..." 
+           value="{{inputText}}" bindinput="onInput" confirm-type="send" bindconfirm="sendMessage"/>
+    <button class="send-btn" bindtap="sendMessage" disabled="{{!inputText || loading}}">
+      {{loading ? '⏳ 分析中...' : '🚀 发送'}}
+    </button>
+  </view>
+</view>

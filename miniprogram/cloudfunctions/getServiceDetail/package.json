@@ -1,0 +1,9 @@
+{
+  "name": "getServiceDetail",
+  "version": "1.0.0",
+  "description": "获取服务详情云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+} 

@@ -1,0 +1,33 @@
+<view class="payment-container">
+  <view class="order-info" wx:if="{{orderInfo}}">
+    <view class="order-title">订单信息</view>
+    <view class="order-item">
+      <text class="label">服务名称</text>
+      <text class="value">{{orderInfo.serviceName}}</text>
+    </view>
+    <view class="order-item">
+      <text class="label">规格</text>
+      <text class="value">{{orderInfo.spec}}</text>
+    </view>
+    <view class="order-item">
+      <text class="label">数量</text>
+      <text class="value">{{orderInfo.quantity}}</text>
+    </view>
+    <view class="order-item total">
+      <text class="label">总价</text>
+      <text class="value price">¥{{orderInfo.totalPrice}}</text>
+    </view>
+  </view>
+
+  <view class="payment-action">
+    <button 
+      class="payment-btn" 
+      type="primary" 
+      loading="{{loading}}" 
+      disabled="{{loading}}" 
+      bindtap="handlePayment"
+    >
+      立即支付
+    </button>
+  </view>
+</view>

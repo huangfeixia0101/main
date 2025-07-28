@@ -1,0 +1,87 @@
+<view class="user-container">
+  <!-- 用户信息区域 -->
+  <view class="user-info">
+    <view class="avatar-section">
+      <image class="avatar" src="{{userInfo.tempAvatarUrl || userInfo.avatarUrl || '/images/avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-detail">
+        <text class="login-text">{{isLogin && userInfo ? userInfo.maskedPhoneNumber : '立即登录'}}</text>
+        <text class="login-desc" bindtap="{{isLogin ? 'goToEditProfile' : 'goToLogin'}}">{{isLogin ? '编辑资料' : '登录享更多功能'}}</text>
+      </view>
+    </view>
+    <view class="vip-section">
+      <view class="vip-card">
+        <image class="vip-icon" src="/images/icons/vip.png"></image>
+        <text>易心VIP</text>
+      </view>
+      <view class="rights-bag">
+        <image class="bag-icon" src="/images/icons/bag.png"></image>
+        <text>我的权益包</text>
+        <text class="count">13</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单管理 -->
+  <view class="order-section">
+    <view class="section-header">
+      <text class="title">我的订单</text>
+      <view class="view-all" bindtap="goToAllOrders">
+        <text>全部订单</text>
+        <image src="/images/rightarrow.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="order-types">
+      <view class="order-type" bindtap="goToOrders" data-status="unpaid">
+        <image src="/images/icons/wallet.png"></image>
+        <text>待支付</text>
+      </view>
+      <view class="order-type" bindtap="goToOrders" data-status="ongoing">
+        <image src="/images/icons/process.png"></image>
+        <text>进行中</text>
+      </view>
+      <view class="order-type" bindtap="goToOrders" data-status="completed">
+        <image src="/images/icons/complete.png"></image>
+        <text>已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务中心 -->
+  <view class="service-section">
+    <text class="section-title">服务中心</text>
+    <view class="service-grid">
+      <view class="service-item" bindtap="navigateToCoupons">
+        <image src="/images/icons/coupon.png"></image>
+        <text>优惠券</text>
+      </view>
+      <view class="service-item" bindtap="navigateToExchange">
+        <image src="/images/icons/exchange.png"></image>
+        <text>兑换</text>
+      </view>
+      <view class="service-item" bindtap="goToAddressManage">
+        <image src="/images/icons/location.png"></image>
+        <text>地址管理</text>
+      </view>
+      <view class="service-item" bindtap="goToPatientManage">
+        <image src="/images/icons/user-manage.png"></image>
+        <text>服务对象管理</text>
+      </view>
+      <view class="service-item">
+        <button class="contact-button" open-type="contact" bindtap="contactCustomerService">
+          <image src="/images/customer-service.png"></image>
+          <text>客服咨询</text>
+        </button>
+      </view>
+      <view class="service-item" bindtap="goToAboutUs">
+        <image src="/images/icons/aboutus.png"></image>
+        <text>关于我们</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 客服电话 -->
+  <view class="service-phone" bindtap="callService">
+    <image src="/images/icons/phone.png"></image>
+    <text>客服电话：400-828-7222</text>
+  </view>
+</view>

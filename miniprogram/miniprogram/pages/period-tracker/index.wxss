@@ -1,0 +1,1197 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffeef8 0%, #f8f4ff 50%, #fff0f5 100%);
+  padding-bottom: 160rpx;
+  box-sizing: border-box;
+}
+
+/* 月份选择器 */
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  margin: 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.1);
+  border: 1rpx solid rgba(255, 255, 255, 0.8);
+}
+
+.month-text-container {
+  display: flex;
+  flex-direction: column; /* Stack main text and lunar text */
+}
+
+.month-text-main {
+  font-size: 36rpx;
+  font-weight: bold;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.month-text-lunar {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.nav-arrow {
+  width: 36rpx;
+  height: 36rpx;
+  padding: 6rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.nav-arrow:active {
+  transform: scale(0.95);
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
+}
+
+
+
+/* 日历头部 */
+.calendar-header {
+  display: flex;
+  padding: 20rpx;
+  margin: 0 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 20rpx 20rpx 0 0;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 107, 0.08);
+  border: 1rpx solid rgba(255, 255, 255, 0.8);
+}
+
+.weekday {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666;
+  padding: 15rpx 0;
+  font-weight: 500;
+}
+
+/* 日历主体 */
+.calendar-body {
+  padding: 20rpx;
+  margin: 0 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 0 0 20rpx 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.1);
+  border: 1rpx solid rgba(255, 255, 255, 0.8);
+  border-top: none;
+}
+
+.calendar-row {
+  display: flex;
+  margin-bottom: 8rpx; /* Reduced margin */
+}
+
+.calendar-day {
+  flex: 1;
+  height: 90rpx;
+  width: 90rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  position: relative;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.calendar-day:active {
+  transform: scale(0.95);
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.day-number {
+  font-weight: 500;
+}
+
+.day-lunar {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.other-month-day {
+  color: #ccc; /* Lighter color for days from other months */
+}
+
+.today-highlight {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  color: #ffffff !important;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 107, 0.4);
+  font-weight: bold;
+}
+
+.today-highlight .day-number {
+  color: #ffffff !important;
+}
+
+.today-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6rpx;
+  height: 6rpx;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.selected-day {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(255, 142, 142, 0.15) 100%);
+  border: 2rpx solid rgba(255, 107, 107, 0.3);
+  color: #FF6B6B;
+  box-shadow: 0 2rpx 8rpx rgba(255, 107, 107, 0.2);
+}
+
+.period-day {
+  background: linear-gradient(135deg, #FFE5E5 0%, #FFEBEB 100%);
+  border: 1rpx solid rgba(255, 107, 107, 0.2);
+  box-shadow: 0 2rpx 8rpx rgba(255, 107, 107, 0.15);
+}
+
+.period-day .day-number,
+.predicted-ovulation-day .day-number {
+  color: #FF6B6B;
+  font-weight: 600;
+}
+
+.fertile-day {
+  background: linear-gradient(135deg, rgba(138, 63, 252, 0.1) 0%, rgba(158, 83, 252, 0.1) 100%);
+  border: 1rpx solid rgba(138, 63, 252, 0.2);
+}
+
+.fertile-day .day-number {
+  color: #8A3FFC;
+  font-weight: 600;
+}
+
+.safe-day {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(96, 195, 100, 0.1) 100%);
+  border: 1rpx solid rgba(76, 175, 80, 0.2);
+}
+
+.safe-day .day-number {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+/* Highlight for ovulation day */
+.ovulation-day-marker {
+  background: linear-gradient(135deg, #E8DFFF 0%, #F0E8FF 100%);
+  border: 2rpx solid rgba(138, 63, 252, 0.3);
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(138, 63, 252, 0.2);
+}
+
+.ovulation-day-marker .day-number {
+  color: #8A3FFC;
+  font-weight: bold;
+}
+
+.ovulation-highlight-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.ovulation-special-marker {
+  position: absolute;
+  width: 20rpx;
+  height: 26rpx;
+  background-color: #FF8AB4; /* 更淡的粉色 */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 8rpx;
+  right: 10rpx;
+  box-shadow: 0 0 4rpx rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  transform: rotate(-20deg);
+}
+
+/* 信息展示区 */
+.info-section {
+  margin: 30rpx 20rpx 20rpx 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 32rpx;
+  box-shadow: 0 20rpx 50rpx rgba(255, 107, 107, 0.12), 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+  border: 2rpx solid rgba(255, 255, 255, 0.95);
+  overflow: hidden;
+  backdrop-filter: blur(15rpx);
+  position: relative;
+}
+
+.info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
+  z-index: 1;
+}
+
+/* 日期状态头部 */
+.date-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35rpx 40rpx;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.date-status-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  z-index: 1;
+}
+
+.date-status-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  z-index: 2;
+}
+
+.date-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+.date-text {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+  letter-spacing: 1rpx;
+  margin-bottom: 8rpx;
+}
+
+.weekday-text {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5rpx;
+}
+
+.status-info {
+  position: relative;
+  z-index: 3;
+}
+
+.status-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.15);
+  letter-spacing: 1rpx;
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10rpx);
+}
+
+/* 信息内容区 */
+.info-content {
+  padding: 35rpx;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 250, 250, 0.9) 100%);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 0;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  background: rgba(255, 107, 107, 0.05);
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+
+.info-dot {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.ovulation-dot {
+  background-color: #FFB8B8; /* Light orange-red dot */
+}
+
+.pregnancy-dot {
+  background-color: #FFB8B8; /* Light orange-red dot */
+}
+
+.note-dot {
+  background-color: #FFB8B8; /* Light orange-red dot */
+}
+
+.period-dot {
+  background-color: #FF6B6B; /* 月经期点的颜色 */
+}
+
+.fertile-dot {
+  background-color: #8A3FFC; /* 易孕期点的颜色 */
+}
+
+.info-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #555;
+}
+
+/* 备注内容特殊样式 */
+.info-item[data-type="note_content"] {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-radius: 15rpx;
+  padding: 20rpx 15rpx;
+  margin: 10rpx 0;
+  border-left: 4rpx solid #667eea;
+}
+
+.info-item[data-type="note_content"] .info-text {
+  color: #333;
+  font-weight: 500;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* 白带变化信息特殊样式 */
+.info-item[data-type="cervical_mucus"] {
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.15) 0%, rgba(255, 192, 203, 0.15) 100%);
+  border-radius: 15rpx;
+  padding: 20rpx 15rpx;
+  margin: 10rpx 0;
+  border-left: 4rpx solid #FF8AB4;
+  box-shadow: 0 2rpx 8rpx rgba(255, 138, 180, 0.1);
+}
+
+.info-item[data-type="cervical_mucus"] .info-text {
+  color: #333;
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: break-all;
+  font-size: 26rpx;
+}
+
+.info-item[data-type="cervical_mucus"] .info-dot {
+  background-color: #FF8AB4;
+  box-shadow: 0 0 6rpx rgba(255, 138, 180, 0.3);
+}
+
+/* 预测孕率信息特殊样式 */
+.info-item[data-type="pregnancy_rate"] {
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.15) 100%);
+  border-radius: 15rpx;
+  padding: 20rpx 15rpx;
+  margin: 10rpx 0;
+  border-left: 4rpx solid #FFA500;
+  box-shadow: 0 2rpx 8rpx rgba(255, 165, 0, 0.1);
+}
+
+.info-item[data-type="pregnancy_rate"] .info-text {
+  color: #333;
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: break-all;
+  font-size: 26rpx;
+}
+
+.info-item[data-type="pregnancy_rate"] .info-dot {
+  background-color: #FFA500;
+  box-shadow: 0 0 6rpx rgba(255, 165, 0, 0.3);
+}
+
+/* 爱爱不宜信息特殊样式 */
+.info-item[data-type="love_warning"] {
+  background: linear-gradient(135deg, rgba(138, 63, 252, 0.15) 0%, rgba(106, 27, 154, 0.15) 100%);
+  border-radius: 15rpx;
+  padding: 20rpx 15rpx;
+  margin: 10rpx 0;
+  border-left: 4rpx solid #8A3FFC;
+  box-shadow: 0 2rpx 8rpx rgba(138, 63, 252, 0.1);
+}
+
+.info-item[data-type="love_warning"] .info-text {
+  color: #333;
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: break-all;
+  font-size: 26rpx;
+}
+
+.info-item[data-type="love_warning"] .info-dot {
+  background: linear-gradient(135deg, #8A3FFC 0%, #6A1B9A 100%);
+  box-shadow: 0 3rpx 8rpx rgba(138, 63, 252, 0.5);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #555;
+}
+
+.note-item {
+  justify-content: space-between; /* Pushes checkbox to the right */
+}
+
+.info-checkbox {
+  transform: scale(0.9);
+}
+
+/* 独立按钮样式 */
+.standalone-button {
+  background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
+  border-radius: 25rpx;
+  padding: 18rpx 30rpx;
+  box-shadow: 0 6rpx 18rpx rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  margin: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.standalone-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 4rpx 12rpx rgba(74, 144, 226, 0.4);
+  background: linear-gradient(135deg, #3A7BD5 0%, #5AA3F0 100%);
+}
+
+/* 备注按钮样式 */
+.info-button {
+  background: linear-gradient(135deg, #4A90E2 0%, #6BB6FF 100%);
+  border-radius: 25rpx;
+  padding: 18rpx 30rpx;
+  box-shadow: 0 6rpx 18rpx rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease;
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.info-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 4rpx 12rpx rgba(74, 144, 226, 0.4);
+  background: linear-gradient(135deg, #3A7BD5 0%, #5AA3F0 100%);
+}
+
+.button-text {
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 日历图例说明 */
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx;
+  gap: 30rpx;
+  margin: 20rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 107, 0.08);
+  border: 1rpx solid rgba(255, 255, 255, 0.8);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  padding: 8rpx 12rpx;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
+}
+
+.legend-item:active {
+  background: rgba(255, 107, 107, 0.1);
+  transform: scale(0.98);
+}
+
+.legend-color {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 6rpx;
+  margin-right: 12rpx;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.safe-legend {
+  background-color: #4CAF50; /* Green */
+}
+
+.fertile-legend {
+  background-color: #8A3FFC; /* Purple */
+}
+
+.predicted-legend {
+  background-color: #FFE5E5; /* 淡粉色背景，与月经期背景色一致 */
+  border: 1rpx solid #FF6B6B; /* 添加边框保持识别度 */
+}
+
+.ovulation-legend {
+  background-color: #FF8AB4; /* 更淡的粉色，与排卵特殊标记一致 */
+  position: relative;
+  width: 20rpx;
+  height: 26rpx;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 0 4rpx rgba(0, 0, 0, 0.2);
+  transform: rotate(-20deg);
+}
+
+/* 底部导航栏 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 110rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  display: flex;
+  border-top: 1rpx solid rgba(255, 107, 107, 0.1);
+  box-shadow: 0 -4rpx 20rpx rgba(255, 107, 107, 0.1);
+  backdrop-filter: blur(10rpx);
+}
+
+.footer-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 8rpx;
+  background-color: transparent;
+  border: none;
+  border-radius: 16rpx;
+  margin: 8rpx 4rpx;
+  line-height: normal;
+  font-size: inherit;
+  text-align: inherit;
+  overflow: visible;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.footer-item:active {
+  transform: scale(0.95);
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.footer-item-active {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 142, 142, 0.1) 100%);
+  border: 1rpx solid rgba(255, 107, 107, 0.2);
+  box-shadow: 0 2rpx 8rpx rgba(255, 107, 107, 0.15);
+}
+
+/* 重置button的默认样式 */
+button.footer-item::after {
+  border: none;
+  border-radius: 0;
+}
+
+.footer-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 6rpx;
+  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+/* 旋转动画 */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.footer-icon.rotating {
+  animation: rotate 1.5s linear infinite;
+}
+
+.footer-item-active .footer-icon {
+  transform: scale(1.1);
+}
+
+.footer-text {
+  font-size: 20rpx;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.footer-item-active .footer-text {
+  color: #FF6B6B;
+  font-weight: 600;
+}
+
+/* 同步按钮特殊样式 */
+.footer-item[data-action="sync"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-item[data-action="sync"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
+  border-radius: 16rpx;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footer-item[data-action="sync"]:hover::before,
+.footer-item[data-action="sync"].footer-item-active::before {
+  opacity: 1;
+}
+
+.footer-item[data-action="sync"] .footer-text {
+  color: #666;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-item[data-action="sync"].footer-item-active .footer-text {
+  color: #4CAF50;
+  font-weight: 600;
+  text-shadow: 0 1rpx 2rpx rgba(76, 175, 80, 0.3);
+}
+
+.footer-item[data-action="sync"] .footer-icon {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 2rpx 4rpx rgba(76, 175, 80, 0.2));
+}
+
+.footer-item[data-action="sync"].footer-item-active .footer-icon {
+  transform: rotate(360deg) scale(1.15);
+  filter: drop-shadow(0 4rpx 8rpx rgba(76, 175, 80, 0.4));
+}
+
+/* 同步按钮脉冲动画 */
+@keyframes sync-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20rpx rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+.footer-item[data-action="sync"].syncing {
+  animation: sync-pulse 2s infinite;
+}
+
+.footer-item[data-action="sync"].syncing .footer-icon {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 同步成功状态 */
+.footer-item[data-action="sync"].sync-success {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(139, 195, 74, 0.15) 100%);
+  border: 1rpx solid rgba(76, 175, 80, 0.3);
+  box-shadow: 0 2rpx 12rpx rgba(76, 175, 80, 0.25);
+}
+
+.footer-item[data-action="sync"].sync-success .footer-icon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 4rpx 8rpx rgba(76, 175, 80, 0.5));
+}
+
+/* 同步错误状态 */
+.footer-item[data-action="sync"].sync-error {
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(255, 87, 34, 0.1) 100%);
+  border: 1rpx solid rgba(244, 67, 54, 0.2);
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4rpx); }
+  75% { transform: translateX(4rpx); }
+}
+
+/* 同步选项面板样式 */
+.sync-options-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sync-options-panel {
+  width: 80%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50rpx); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.sync-options-header {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sync-options-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.sync-options-close {
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+  padding: 10rpx;
+}
+
+.sync-options-content {
+  padding: 20rpx 0;
+}
+
+.sync-option-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.sync-option-item:active {
+  background-color: #f9f9f9;
+}
+
+.sync-option-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.upload-icon {
+  background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+  position: relative;
+}
+
+.upload-icon:before {
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.download-icon {
+  background: linear-gradient(135deg, #2196F3 0%, #03A9F4 100%);
+  position: relative;
+}
+
+.download-icon:before {
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sync-option-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sync-option-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.sync-option-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.sync-option-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 3rpx solid #ccc;
+  border-right: 3rpx solid #ccc;
+  transform: rotate(45deg);
+  margin-left: 20rpx;
+}
+
+/* 同步进度条样式 */
+.sync-progress-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.sync-progress-panel {
+  width: 80%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15);
+  padding: 40rpx 30rpx;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15); }
+  50% { box-shadow: 0 8rpx 30rpx rgba(76, 175, 80, 0.3); }
+  100% { box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15); }
+}
+
+.sync-progress-header {
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+
+.sync-progress-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.sync-progress-bar-container {
+  height: 20rpx;
+  background-color: #f0f0f0;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.sync-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+  border-radius: 10rpx;
+  transition: width 0.3s ease;
+}
+
+.sync-progress-percent {
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+/* 同步提示框样式 */
+.sync-tip {
+  position: fixed;
+  top: 100rpx;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  opacity: 0;
+  transition: all 0.3s ease;
+  max-width: 80%;
+}
+
+.sync-tip.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.sync-tip-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.success-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.error-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F44336'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.warning-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF9800'%3E%3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.sync-tip-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.sync-tip.success {
+  border-left: 8rpx solid #4CAF50;
+}
+
+.sync-tip.error {
+  border-left: 8rpx solid #F44336;
+}
+
+.sync-tip.warning {
+  border-left: 8rpx solid #FF9800;
+}
+
+/* 下载确认对话框样式 */
+.download-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.download-confirm-panel {
+  width: 80%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease;
+}
+
+.download-confirm-header {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  text-align: center;
+}
+
+.download-confirm-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.download-confirm-content {
+  padding: 40rpx 30rpx;
+  text-align: center;
+}
+
+.download-confirm-message {
+  font-size: 30rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+.download-confirm-footer {
+  display: flex;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.download-confirm-btn {
+  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 32rpx;
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.download-confirm-btn::after {
+  border: none;
+}
+
+.download-confirm-btn.cancel {
+  color: #999;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.download-confirm-btn.confirm {
+  color: #FF6B6B;
+  font-weight: 500;
+}
+
+/* 阻止事件冒泡的辅助函数 */
+.stop-propagation {
+  /* 空样式，用于catchtap */
+}
+
+/* Remove old status bar styles if not used */
+.status-bar,
+.status-text,
+.status-desc,
+.status-btn,
+.dot {
+  /* display: none; */ /* Or remove these rules if the elements are removed from WXML */
+}
+
+/* 咨询医生链接样式 */
+.doctor-consultation {
+  position: fixed;
+  bottom: 110rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 50%, #FFB8B8 100%);
+  padding: 18rpx 36rpx;
+  border-radius: 50rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 107, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  z-index: 1000;
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10rpx);
+}
+
+.doctor-consultation:active {
+  transform: translateX(-50%) scale(0.95);
+  box-shadow: 0 6rpx 18rpx rgba(255, 107, 107, 0.5);
+}
+
+.consultation-text {
+  color: #FFFFFF;
+  font-size: 26rpx;
+  font-weight: 500;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+}
+
+.consultation-link {
+  color: #FFFFFF;
+  font-size: 26rpx;
+  font-weight: 700;
+  text-decoration: underline;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.1);
+}
+
+/* Remove old AI assistant styles if not used */
+.ai-assistant,
+.ai-tip {
+  /* display: none; */ /* Or remove these rules */
+}
+
+/* Remove old record options if not used */
+.record-options-section,
+.record-item,
+.record-icon,
+.record-text,
+.record-checkbox {
+  /* display: none; */
+}
+
+/* Remove old pregnancy probability section if not used */
+.pregnancy-probability-section,
+.selected-date-info,
+.probability-text {
+  /* display: none; */
+}

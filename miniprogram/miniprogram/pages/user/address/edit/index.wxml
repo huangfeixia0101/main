@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{isEdit ? '编辑地址' : '新增地址'}}</text>
+  </view>
+
+  <view class="form-container">
+    <!-- 收货人 -->
+    <view class="form-item">
+      <text class="label">收货人</text>
+      <input class="input" value="{{address.name}}" placeholder="请输入收货人姓名" bindinput="onInputChange" data-field="name" />
+    </view>
+
+    <!-- 手机号码 -->
+    <view class="form-item">
+      <text class="label">手机号码</text>
+      <input class="input" type="number" value="{{address.phone}}" placeholder="请输入手机号码" bindinput="onInputChange" data-field="phone" maxlength="11" />
+    </view>
+
+    <!-- 所在地区 -->
+    <view class="form-item">
+      <text class="label">所在地区</text>
+      <picker mode="region" bindchange="bindRegionChange" value="{{regions}}">
+        <view class="picker {{regions.length > 0 ? '' : 'placeholder'}}">
+          {{regions.length > 0 ? regions[0] + regions[1] + regions[2] : '请选择所在地区'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 详细地址 -->
+    <view class="form-item">
+      <text class="label">详细地址</text>
+      <textarea class="textarea" value="{{address.address}}" placeholder="请输入详细地址，如街道、门牌号等" bindinput="onInputChange" data-field="address"></textarea>
+    </view>
+
+    <!-- 设为默认地址 -->
+    <view class="form-item switch-item">
+      <text class="label">设为默认地址</text>
+      <switch checked="{{address.isDefault}}" bindchange="onSwitchChange" color="#1aad19" />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-btn {{loading ? 'disabled' : ''}}" bindtap="{{loading ? '' : 'saveAddress'}}">
+    <text>{{loading ? '保存中...' : '保存'}}</text>
+  </view>
+</view>

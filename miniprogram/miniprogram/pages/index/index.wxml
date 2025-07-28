@@ -1,0 +1,108 @@
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <view class="header-title">AI医探</view>
+    <view class="header-subtitle">您的贴心健康管家</view>
+  </view>
+  
+  <!-- 内容区域 -->
+  <view class="content">
+    <!-- 功能模块布局 -->
+    <view class="feature-grid">
+    
+    <!-- 智能医生匹配模块 -->
+    <view class="ai-doctor-item" bindtap="openDoctorMatching">
+      <view class="ai-doctor-left">
+        <view class="ai-doctor-icon">
+          <image src="/images/icon-doctor.png" mode="aspectFit"/>
+        </view>
+        <view class="ai-doctor-info">
+          <view class="ai-doctor-title">智能医生匹配</view>
+          <view class="ai-doctor-subtitle">AI分析诉求，匹配最适合的医生</view>
+        </view>
+      </view>
+      <view class="ai-badge">AI</view>
+    </view>
+    
+    <!-- 智能医生匹配Pro模块 -->
+    <view class="ai-doctor-pro-item" bindtap="openDoctorMatchingPro">
+      <view class="ai-doctor-left">
+        <view class="ai-doctor-icon">
+          <image src="/images/doctor-pro.png" mode="aspectFit"/>
+        </view>
+        <view class="ai-doctor-info">
+          <view class="ai-doctor-title">智能医生匹配Pro</view>
+          <view class="ai-doctor-subtitle">Pro版多维度输出医生教育、手术，态度，研究等信息</view>
+        </view>
+      </view>
+      <view class="ai-badge-pro">Pro</view>
+      <view class="shine-effect"></view>
+    </view>
+    
+    <!-- 腾讯健康问医生模块 -->
+    <view class="doctor-item" bindtap="onFeatureTap" data-feature="doctor">
+      <view class="doctor-left">
+        <view class="doctor-icon">
+          <image src="/images/icon-doctor.png" mode="aspectFit"/>
+        </view>
+        <view class="doctor-info">
+          <view class="doctor-title">腾讯健康问医生</view>
+          <view class="doctor-subtitle">常见问题库 + 在线图文/语音咨询</view>
+        </view>
+      </view>
+      <!-- <view class="doctor-action">收藏/引流</view> -->
+    </view>
+    
+    <!-- 其他功能模块 -->
+    <view class="other-features">
+      <view class="section-title">其他功能</view>
+      <view class="feature-row">
+        <!-- 月经记录 - 缩小版 -->
+        <view class="feature-item-small" bindtap="onFeatureTap" data-feature="period">
+          <view class="feature-icon-small">
+            <image src="/images/icon-calendar.png" mode="aspectFit"/>
+          </view>
+          <view class="feature-text-small">月经记录</view>
+        </view>
+        
+        <!-- 更多功能 - 跳转到服务页 -->
+        <view class="feature-item-small" bindtap="onFeatureTap" data-feature="services">
+          <view class="feature-icon-small">
+            <image src="/images/icon-droplet.png" mode="aspectFit"/>
+          </view>
+          <view class="feature-text-small">更多功能</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 女性专栏模块
+    <view class="column-item" bindtap="onFeatureTap" data-feature="female">
+      <view class="column-info">
+        <view class="column-title">女性专栏</view>
+        <view class="column-subtitle">免费 + 广告</view>
+      </view>
+      <view class="column-image">
+        <image src="/images/placeholder.png" mode="aspectFit"/>
+      </view>
+    </view> -->
+    
+    <!-- 健康商城模块
+    <view class="mall-item" bindtap="onFeatureTap" data-feature="mall">
+      <view class="mall-title">健康商城</view>
+      <view class="mall-products">
+        <view class="mall-product">
+          <image src="/images/placeholder.png" mode="aspectFit"/>
+        </view>
+        <view class="mall-product">
+          <image src="/images/placeholder.png" mode="aspectFit"/>
+        </view>
+      </view>
+    </view> -->
+    </view>
+  </view>
+  
+  <!-- 技术支持说明 -->
+  <view class="tech-support">
+    <view class="tech-support-text">🛑 健康提示：本程序提供的内容仅供健康信息参考，不做任何诊断服务。</view>
+  </view>
+</view>

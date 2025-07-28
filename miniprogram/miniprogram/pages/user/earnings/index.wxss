@@ -1,0 +1,311 @@
+/* pages/user/earnings/index.wxss */
+.earnings-container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* 收益概览 */
+.earnings-overview {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.total-earnings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.total-earnings .label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.total-earnings .amount {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.earnings-details {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30rpx;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detail-item .label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.detail-item .amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 收益类型标签 */
+.earnings-tabs {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #07c160;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background-color: #07c160;
+  border-radius: 2rpx;
+}
+
+/* 额外收益列表 */
+.extra-list {
+  margin-top: 20rpx;
+}
+
+.extra-item {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.extra-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.extra-title {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.extra-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.extra-amount {
+  display: flex;
+  align-items: baseline;
+}
+
+.extra-amount .amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #07c160;
+}
+
+.extra-amount .unit {
+  font-size: 24rpx;
+  color: #07c160;
+  margin-left: 4rpx;
+}
+
+.withdraw-btn {
+  background-color: #07c160;
+  color: white;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.withdraw-btn[disabled] {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/* 日期筛选 */
+.date-filter {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.filter-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.filter-item.active {
+  color: #07c160;
+  font-weight: bold;
+}
+
+.filter-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 4rpx;
+  background-color: #07c160;
+  border-radius: 2rpx;
+}
+
+/* 收益列表 */
+.earnings-list {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.list-header text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.toggle-records {
+  font-size: 26rpx;
+  color: #07c160;
+}
+
+/* 订单列表 */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-title {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.order-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-amount {
+  display: flex;
+  align-items: baseline;
+}
+
+.order-amount .amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #07c160;
+}
+
+.order-amount .unit {
+  font-size: 24rpx;
+  color: #07c160;
+  margin-left: 4rpx;
+}
+
+/* 提现记录列表 */
+.withdrawal-item {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.withdrawal-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.withdrawal-amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.withdrawal-status {
+  font-size: 26rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 6rpx;
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.withdrawal-time {
+  font-size: 24rpx;
+  color: #999;
+  align-self: flex-end;
+}
+
+/* 加载中和空状态 */
+.loading, .empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
+  color: #999;
+  font-size: 28rpx;
+}

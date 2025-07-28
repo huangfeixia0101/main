@@ -1,0 +1,57 @@
+<view class="note-editor-container" wx:if="{{visible}}">
+  <view class="note-editor-mask" bindtap="onClose"></view>
+  <view class="note-editor-content">
+    <!-- 头部 -->
+    <view class="note-editor-header">
+      <text class="note-editor-title">添加备注</text>
+    </view>
+
+    <!-- 日期显示 -->
+    <view class="note-editor-date">
+      <text class="date-text">{{selectedDate}}</text>
+    </view>
+
+    <!-- 快速选择选项 -->
+    <view class="quick-options">
+      <text class="section-title">快速选择</text>
+      <view class="options-grid">
+        <view class="option-item {{selectedOption === '月经来了' ? 'option-selected' : ''}}" 
+              bindtap="onOptionSelect" data-option="月经来了">
+          <text class="option-text">月经来了</text>
+        </view>
+        <view class="option-item {{selectedOption === '月经还在' ? 'option-selected' : ''}}" 
+              bindtap="onOptionSelect" data-option="月经还在">
+          <text class="option-text">月经还在</text>
+        </view>
+        <view class="option-item {{selectedOption === '月经走了' ? 'option-selected' : ''}}" 
+              bindtap="onOptionSelect" data-option="月经走了">
+          <text class="option-text">月经走了</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 自定义输入 -->
+    <view class="custom-input-section">
+      <text class="section-title">自定义备注</text>
+      <textarea class="note-textarea" 
+                placeholder="请输入自定义备注内容..." 
+                value="{{customNote}}"
+                bindinput="onCustomNoteInput"
+                maxlength="200"
+                show-confirm-bar="{{false}}"></textarea>
+      <view class="char-count">
+        <text class="count-text">{{customNote.length}}/200</text>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="note-editor-footer">
+      <view class="footer-button cancel-button" bindtap="onClose">
+        <text class="button-text">取消</text>
+      </view>
+      <view class="footer-button save-button" bindtap="onSave">
+        <text class="button-text">保存</text>
+      </view>
+    </view>
+  </view>
+</view>

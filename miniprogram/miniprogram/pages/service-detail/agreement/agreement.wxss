@@ -1,0 +1,85 @@
+.agreement-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.agreement-header {
+  padding: 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.agreement-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.agreement-content {
+  flex: 1;
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.party-info {
+  margin-bottom: 30rpx;
+}
+
+.party-info text {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.agreement-intro {
+  margin-bottom: 30rpx;
+}
+
+.section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.subsection {
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+
+.subsection-title {
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.subsection text {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.agreement-footer {
+  padding: 30rpx;
+  border-top: 1rpx solid #eee;
+}
+
+.agree-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+}
+
+.agree-btn:active {
+  opacity: 0.8;
+}

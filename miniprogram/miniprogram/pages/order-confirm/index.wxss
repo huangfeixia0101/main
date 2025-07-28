@@ -1,0 +1,299 @@
+.container {
+  padding-bottom: 120rpx;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* 服务信息样式 */
+.service-info {
+  padding: 40rpx 30rpx;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  margin: 20rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 12rpx 30rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1rpx solid rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6rpx;
+  height: 100%;
+  background: linear-gradient(to bottom, #1aad19, #4cd964);
+}
+
+.service-info:active {
+  transform: scale(0.98);
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.service-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.service-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 10rpx;
+}
+
+.service-spec, .service-quantity {
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.spec-label, .quantity-label, .price-label {
+  color: #888;
+  font-weight: 500;
+}
+
+.spec-value, .quantity-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.service-price {
+  margin-top: 10rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.price-label {
+  font-size: 30rpx;
+}
+
+.price-value {
+  color: #ff5252;
+  font-weight: 600;
+  font-size: 40rpx;
+  text-shadow: 0 2rpx 4rpx rgba(255, 82, 82, 0.1);
+}
+
+/* 标题样式 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  padding: 40rpx 30rpx 20rpx;
+  color: #333;
+  background-color: transparent;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 10rpx;
+  left: 30rpx;
+  width: 60rpx;
+  height: 4rpx;
+  background: linear-gradient(to right, #1aad19, #4cd964);
+  border-radius: 2rpx;
+}
+
+/* 服务对象信息样式 */
+.patient-section, .address-section {
+  background: linear-gradient(to bottom, #ffffff, #fafafa);
+  padding: 0 30rpx;
+  margin: 0 20rpx 20rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid rgba(0, 0, 0, 0.03);
+}
+
+.patient-item, .address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.patient-item:last-child, .address-item:last-child {
+  border-bottom: none;
+}
+
+.patient-item.selected, .address-item.selected {
+  background-color: rgba(26, 173, 25, 0.05);
+  border-radius: 16rpx;
+  padding: 30rpx 20rpx;
+  margin: 10rpx 0;
+  border: 2rpx solid rgba(26, 173, 25, 0.3);
+  box-shadow: 0 4rpx 12rpx rgba(26, 173, 25, 0.1);
+}
+
+.patient-info, .address-info {
+  flex: 1;
+}
+
+.patient-name, .address-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.patient-relation, .patient-phone, .patient-idcard, .address-phone, .address-detail {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 8rpx;
+  line-height: 1.5;
+}
+
+.patient-default, .address-default {
+  font-size: 24rpx;
+  color: #1aad19;
+  padding: 6rpx 16rpx;
+  border: 1rpx solid rgba(26, 173, 25, 0.3);
+  border-radius: 20rpx;
+  background-color: rgba(26, 173, 25, 0.05);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.address-header {
+  display: flex;
+  align-items: center;
+}
+
+.address-name {
+  margin-right: 20rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.add-btn {
+  text-align: center;
+  padding: 30rpx 0;
+  color: #1aad19;
+  font-size: 30rpx;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.add-btn:active {
+  opacity: 0.8;
+}
+
+.add-btn::before {
+  content: '+';
+  margin-right: 8rpx;
+  font-weight: 600;
+  font-size: 34rpx;
+}
+
+/* 备注信息样式 */
+.remark-section {
+  background: linear-gradient(to bottom, #ffffff, #fafafa);
+  padding: 30rpx;
+  margin: 0 20rpx 20rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid rgba(0, 0, 0, 0.03);
+}
+
+.remark-input {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border: 1rpx solid rgba(0, 0, 0, 0.08);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.remark-input:focus {
+  border-color: rgba(26, 173, 25, 0.3);
+  box-shadow: 0 0 0 2rpx rgba(26, 173, 25, 0.1);
+}
+
+/* 底部提交栏样式 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: linear-gradient(to bottom, #ffffff, #fafafa);
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.03);
+}
+
+.total-price {
+  flex: 1;
+  font-size: 30rpx;
+}
+
+.price-label {
+  color: #333;
+  font-weight: 500;
+}
+
+.price-value {
+  color: #ff5252;
+  font-weight: 600;
+  font-size: 40rpx;
+  text-shadow: 0 2rpx 4rpx rgba(255, 82, 82, 0.1);
+}
+
+.submit-btn {
+  width: 240rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: linear-gradient(135deg, #1aad19, #4cd964);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 40rpx;
+  margin: 0;
+  box-shadow: 0 6rpx 16rpx rgba(26, 173, 25, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+  letter-spacing: 2rpx;
+}
+
+.submit-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3rpx 8rpx rgba(26, 173, 25, 0.2);
+  background: linear-gradient(135deg, #159b14, #3abb51);
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.service-info, .patient-section, .address-section, .remark-section {
+  animation: fadeIn 0.5s ease-out;
+}

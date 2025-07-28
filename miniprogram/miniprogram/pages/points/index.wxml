@@ -1,0 +1,123 @@
+<!--积分中心页面-->
+<view class="points-container">
+  <!-- 积分余额卡片 -->
+  <view class="points-card">
+    <view class="points-header">
+      <image class="points-icon" src="/images/points-icon.png" mode="aspectFit"></image>
+      <text class="points-title">我的积分</text>
+    </view>
+    <view class="points-balance">
+      <text class="balance-number">{{pointsBalance}}</text>
+      <text class="balance-unit">积分</text>
+    </view>
+    <view class="points-desc">积分可用于抵扣服务使用次数</view>
+  </view>
+
+  <!-- 获取积分方式 -->
+  <view class="earn-points-section">
+    <view class="section-title">
+      <text>获取积分</text>
+    </view>
+    <view class="earn-methods">
+      <view class="earn-item" bindtap="showShareModal">
+        <view class="earn-icon">
+          <image src="/images/share.png" mode="aspectFit"></image>
+        </view>
+        <view class="earn-content">
+          <view class="earn-title">分享小程序</view>
+          <view class="earn-desc">每次分享可获得5积分</view>
+          <view class="earn-stats">
+            <text class="stats-text">今日已分享 {{shareStats.todayShares}}/5 次</text>
+            <text class="stats-text" wx:if="{{shareStats.todayRemaining > 0}}">剩余 {{shareStats.todayRemaining}} 次</text>
+            <text class="stats-text limit-reached" wx:else>今日分享次数已达上限</text>
+            <text class="stats-text" wx:if="{{shareStats.todayPointsEarned > 0}}">今日已获得 {{shareStats.todayPointsEarned}} 积分</text>
+          </view>
+        </view>
+        <view class="earn-arrow">></view>
+      </view>
+      <view class="earn-item" bindtap="onInviteFriend">
+        <view class="earn-icon invite-icon">👥</view>
+        <view class="earn-info">
+          <text class="earn-title">邀请好友</text>
+          <text class="earn-desc">好友首次使用获得10积分</text>
+        </view>
+        <view class="earn-points">+10</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分用途 -->
+  <view class="usage-section">
+    <view class="section-title">
+      <text>积分用途</text>
+    </view>
+    <view class="usage-list">
+      <view class="usage-item">
+        <view class="usage-icon">🏥</view>
+        <view class="usage-info">
+          <text class="usage-title">智能医生匹配</text>
+          <text class="usage-desc">超出免费次数后可用积分抵扣</text>
+        </view>
+        <view class="usage-cost">10积分/次</view>
+      </view>
+      <view class="usage-item">
+        <view class="usage-icon">⭐</view>
+        <view class="usage-info">
+          <text class="usage-title">智能匹配Pro</text>
+          <text class="usage-desc">体验Pro版高级功能</text>
+        </view>
+        <view class="usage-cost">100积分/次</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分历史 -->
+  <view class="history-section">
+    <view class="section-title">
+      <text>积分记录</text>
+      <text class="view-all" bindtap="viewAllHistory">查看全部</text>
+    </view>
+    <view class="history-list" wx:if="{{pointsHistory.length > 0}}">
+      <view class="history-item" wx:for="{{pointsHistory}}" wx:key="_id">
+        <view class="history-info">
+          <text class="history-desc">{{item.description}}</text>
+          <text class="history-time">{{item.createTime}}</text>
+        </view>
+        <view class="history-points {{item.type === 'earn' ? 'earn' : 'spend'}}">
+          {{item.type === 'earn' ? '+' : '-'}}{{item.points}}
+        </view>
+      </view>
+    </view>
+    <view class="empty-history" wx:else>
+      <text>暂无积分记录</text>
+    </view>
+  </view>
+</view>
+
+<!-- 分享弹窗 -->
+<view class="share-modal" wx:if="{{showShareModal}}" bindtap="hideShareModal">
+  <view class="share-content" bindtap="stopPropagation">
+    <view class="share-title">选择分享方式</view>
+    <view class="share-limit-info" wx:if="{{shareStats.todayRemaining <= 0}}">
+      <text class="limit-text">今日分享次数已达上限（5次），明日可继续分享获得积分</text>
+    </view>
+    <view class="share-options">
+      <button class="share-btn {{shareStats.todayRemaining <= 0 ? 'disabled' : ''}}" 
+              open-type="share" 
+              bindtap="hideShareModal"
+              disabled="{{shareStats.todayRemaining <= 0}}">
+        <view class="share-icon">👥</view>
+        <view class="share-text">分享给好友</view>
+        <view class="share-status" wx:if="{{shareStats.todayRemaining <= 0}}">已达上限</view>
+      </button>
+      <button class="share-btn {{shareStats.todayRemaining <= 0 ? 'disabled' : ''}}" 
+              bindtap="shareToTimeline"
+              disabled="{{shareStats.todayRemaining <= 0}}">
+        <view class="share-icon">⭕</view>
+        <view class="share-text">分享到朋友圈</view>
+        <view class="share-status" wx:if="{{shareStats.todayRemaining <= 0}}">已达上限</view>
+      </button>
+    </view>
+    <view class="share-close" bindtap="hideShareModal">取消</view>
+  </view>
+</view>

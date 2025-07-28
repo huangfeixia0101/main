@@ -1,0 +1,49 @@
+<view class="evaluation-container">
+  <view class="service-info">
+    <text class="service-name">{{serviceName}}</text>
+  </view>
+
+  <!-- 星级评分 -->
+  <view class="rating-section">
+    <text class="section-title">服务评分</text>
+    <view class="stars-container">
+      <view class="star {{rating >= 1 ? 'active' : ''}}" bindtap="setRating" data-rating="1"></view>
+      <view class="star {{rating >= 2 ? 'active' : ''}}" bindtap="setRating" data-rating="2"></view>
+      <view class="star {{rating >= 3 ? 'active' : ''}}" bindtap="setRating" data-rating="3"></view>
+      <view class="star {{rating >= 4 ? 'active' : ''}}" bindtap="setRating" data-rating="4"></view>
+      <view class="star {{rating >= 5 ? 'active' : ''}}" bindtap="setRating" data-rating="5"></view>
+      <text class="rating-text">{{ratingText[rating-1]}}</text>
+    </view>
+  </view>
+
+  <!-- 评价内容 -->
+  <view class="comment-section">
+    <text class="section-title">评价内容</text>
+    <textarea class="comment-input" placeholder="请分享您对本次服务的评价和建议..." bindinput="handleCommentInput" value="{{comment}}" maxlength="200"></textarea>
+    <text class="word-count">{{comment.length}}/200</text>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="upload-section">
+    <text class="section-title">上传图片(选填)</text>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{images}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+        <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="upload-btn" bindtap="chooseImage" wx:if="{{images.length < 3}}">
+        <text>+</text>
+      </view>
+    </view>
+    <text class="upload-tip">最多上传3张图片</text>
+  </view>
+
+  <!-- 匿名评价 -->
+  <view class="anonymous-section">
+    <text>匿名评价</text>
+    <switch bindchange="toggleAnonymous" checked="{{isAnonymous}}"></switch>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitEvaluation" disabled="{{!rating || submitting}}">提交评价</button>
+</view>

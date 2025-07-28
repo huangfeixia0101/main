@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="redeem-header">
+    <view class="title">兑换中心</view>
+    <view class="subtitle">输入兑换码获取优惠券或积分</view>
+  </view>
+
+  <view class="redeem-form">
+    <view class="input-group">
+      <input 
+        class="redeem-input" 
+        type="text" 
+        placeholder="请输入兑换码" 
+        value="{{redeemCode}}" 
+        bindinput="onInputRedeemCode"
+        maxlength="20"
+      />
+    </view>
+    <button 
+      class="redeem-btn" 
+      bindtap="submitRedeem" 
+      loading="{{loading}}"
+      disabled="{{loading}}"
+    >立即兑换</button>
+  </view>
+
+  <view class="redeem-history">
+    <view class="history-title">兑换记录</view>
+    <view class="history-list" wx:if="{{redeemHistory.length > 0}}">
+      <view class="history-item" wx:for="{{redeemHistory}}" wx:key="_id">
+        <view class="history-info">
+          <view class="history-name">{{item.name}}</view>
+          <view class="history-time">{{item.createTime}}</view>
+        </view>
+        <view class="history-value">{{item.value}}</view>
+      </view>
+    </view>
+    <view class="empty-history" wx:else>
+      <image class="empty-icon" src="/images/empty.png" mode="aspectFit"></image>
+      <view class="empty-text">暂无兑换记录</view>
+    </view>
+  </view>
+</view>

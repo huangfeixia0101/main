@@ -1,0 +1,52 @@
+<view class="coupon-container">
+  <!-- 标签页 -->
+  <view class="tabs">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="index" 
+      class="tab {{activeTab === index ? 'active' : ''}}" 
+      bindtap="handleTabChange" 
+      data-index="{{index}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 优惠券列表 -->
+  <view class="coupon-list" wx:if="{{coupons.length > 0}}">
+    <view 
+      class="coupon-item" 
+      wx:for="{{coupons}}" 
+      wx:key="_id"
+    >
+      <view class="coupon-left">
+        <view class="coupon-amount">¥<text class="amount-value">{{item.amount}}</text></view>
+        <view class="coupon-condition">满{{item.minAmount}}元可用</view>
+      </view>
+      <view class="coupon-right">
+        <view class="coupon-name">{{item.name}}</view>
+        <view class="coupon-desc">{{item.description}}</view>
+        <view class="coupon-date">有效期至：{{item.expireDateFormatted}}</view>
+        <button 
+          class="use-btn" 
+          wx:if="{{activeTab === 0}}" 
+          bindtap="useCoupon" 
+          data-coupon-id="{{item._id}}"
+        >立即使用</button>
+        <view class="coupon-status" wx:if="{{activeTab === 1}}">已使用</view>
+        <view class="coupon-status" wx:if="{{activeTab === 2}}">已过期</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/empty.png" mode="aspectFit"></image>
+    <text class="empty-text">{{activeTab === 0 ? '暂无可用优惠券' : activeTab === 1 ? '暂无已使用优惠券' : '暂无已过期优惠券'}}</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

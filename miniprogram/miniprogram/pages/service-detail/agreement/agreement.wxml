@@ -1,0 +1,83 @@
+<view class="agreement-container">
+  <view class="agreement-header">
+    <text class="agreement-title">平台服务协议</text>
+  </view>
+  <scroll-view scroll-y class="agreement-content">
+    <view class="agreement-section">
+      <view class="party-info">
+        <text>甲方（用户）：</text>
+        <text>乙方（平台）：</text>
+        <text>丙方（陪诊师）：</text>
+      </view>
+      <view class="agreement-intro">
+        <text>根据《中华人民共和国民法典》及相关法律、法规的规定，甲乙丙三方在自愿平等、协商一致的基础上，秉持诚信原则，签订本协议。具体内容如下：</text>
+      </view>
+      <view class="section">
+        <view class="section-title">一、服务内容</view>
+        <view class="subsection">
+          <view class="subsection-title">1. 信息服务</view>
+          <text>乙方通过信息发布及信息推送等方式向甲方及丙方提供服务。</text>
+          <text>甲方通过乙方发布寻求陪诊服务的信息/订单（包括但不限于陪诊时间、地点等），信息/订单发布一经作出即对甲方具有约束力，乙方将实时地将该信息推送给丙方。</text>
+          <text>丙方通过并保证只通过乙方推送的甲方需求信息来确认提供相应陪诊服务，丙方的确认信息/订单发布一经作出即对丙方具有约束力，乙方将实时地将该信息推送给甲方。</text>
+          <text>订单经丙方确认反馈至甲方时，甲方未撤销或变更订单发布的，即视为甲方与丙方之间达成有效的陪诊服务合同。</text>
+        </view>
+        <view class="subsection">
+          <view class="subsection-title">2. 陪诊服务</view>
+          <text>甲方保证发布的订单完整、真实、有效，丙方应当按订单内容为甲方提供陪诊服务。乙方有权对全部服务过程进行监督。</text>
+        </view>
+      </view>
+      <view class="section">
+        <view class="section-title">二、各方权利义务</view>
+        <view class="subsection">
+          <view class="subsection-title">1. 甲方的权利义务</view>
+          <text>1) 甲方应遵守有关的法律法规规定、《用户注册协议》、《隐私政策协议》及本协议下的权利义务。</text>
+          <text>2) 甲方应当保证其发布的需求信息真实（包括但不限于身份信息真实）。同时，甲方授权乙方、丙方为陪诊之目的，使用甲方个人身份信息。</text>
+          <text>3) 甲方应按照协议约定及时足额支付平台信息费和服务费。</text>
+        </view>
+        <view class="subsection">
+          <view class="subsection-title">2. 乙方的权利义务</view>
+          <text>1) 乙方应遵守有关的法律法规规定及本协议下的权利义务。</text>
+          <text>2) 乙方有权向甲方和丙方收取平台信息费。</text>
+          <text>3) 乙方有权了解丙方提供陪诊服务过程的真实情况。</text>
+          <text>4) 就甲方向乙方提出的针对丙方服务过程中存在的问题乙方有权要求丙方及时予以纠正。</text>
+          <text>5）除陪诊之目的，乙方对甲方个人身份信息将严格保密。</text>
+        </view>
+        <view class="subsection">
+          <view class="subsection-title">3. 丙方的权利义务</view>
+          <text>1) 丙方应遵守有关的法律法规规定、《陪诊师注册协议》及本协议下的权利义务。</text>
+          <text>2) 丙方确定自己符合平台要求的陪诊师条件，具备陪诊服务资格，如因丙方隐瞒以上事实带来的纠纷或者损害，由丙方承担。</text>
+          <text>3) 丙方不得利用陪诊服务从事违法犯罪行为，不得从事一切与陪诊服务无关的项目，包括但不限于推销或者贩卖任何药品和医疗信息。</text>
+          <text>4) 丙方有权通过乙方且只能通过乙方发布其个人信息，获取订单、要求结算相关服务费用。</text>
+          <text>5) 丙方应当对甲方提供的个人身份信息严格保密。非陪诊之目的及需要，严禁使用/泄露甲方个人信息。一经发现丙方违规使用/泄露甲方个人身份信息，乙方有权立即将丙方列入平台黑名单并采取一切可能的法律手段维护用户合法权益。</text>
+        </view>
+      </view>
+      <view class="section">
+        <view class="section-title">三、服务费用</view>
+        <text>1．三方同意以平台标准为结算依据，丙方在平台上面每完成一笔订单交易（订单完成需同时满足：用户付费、陪诊服务结束、无任何何纠纷或投诉或差评），平台在该笔订单完成之日起7日后，向丙方支付该笔订单提成。</text>
+      </view>
+      <view class="section">
+        <view class="section-title">四、事故处理</view>
+        <text>1．如甲方或甲方家属非因平台原因发生意外事故（包括但不限于突发疾病亡故、因自身原因引起的摔伤、诊疗不当、陪诊师侵权、自身突发疾病造成损害等），平台不承担任何责任，甲方可自行向医院或其他第三方主张责任，如需平台配合提供资料，平台将在符合法律规定的条件下按照法律要求配合提供资料。</text>
+        <text>2．丙方应当注意人身安全，防止发生意外伤害事故。在服务过程中，若丙方自身过错造成人员伤亡、财产损失等后果，应在2小时内通知平台，一切责任均由丙方自行承担。在服务过程中，如丙方自身发生人身损害、财产损失，平台不承担任何责任，丙方可自行向侵权责任方索赔，如需平台配合提供资料，平台将在符合法律规定的条件下按照法律要求配合提供资料。</text>
+      </view>
+      <view class="section">
+        <view class="section-title">五、违约责任</view>
+        <text>1．若因丙方的原因延迟、取消、改约、或中途暂停服务的，平台有权对丙方进行损失的扣罚、要求赔偿或退款补偿。</text>
+        <text>2．如因甲方、丙方违反法律法规规定或本协议约定，在平台系统或利用平台服务从事非法活动或谋取不正当利益的，平台有权立即终止账号，并要求赔偿损失。</text>
+        <text>3．如甲方、丙方以虚构事实等方式恶意诋毁平台的商誉，平台有权要求甲方、丙方向平台公开道歉，赔偿损失。</text>
+      </view>
+      <view class="section">
+        <view class="section-title">六、其他事宜</view>
+        <text>1．随着网络平台信息服务的进一步提升，条款内容会随时更新。更新后的协议条款一旦在平台上公布有效，则代替原来条款。如果协议的某一（些）条款被认定为无效而其他条款仍能保持有效且其执行不受影响，由乙方决定是否继续履行该等其他条款。</text>
+      </view>
+      <view class="section">
+        <view class="section-title">七、通知和送达</view>
+        <text>1．以通过以下途径发送通知：在平台上张贴一般通知；按照您在账户信息中登记的电子邮件地址或电话发送电子邮件或短信。</text>
+      </view>
+      <view class="section">
+        <view class="section-title">八、争议解决</view>
+        <text>1．关于本协议的违约、终止、履行、解释或有效性，或者平台的使用所产生的或与其相关的任何冲突、赔偿或纠纷（统称为"争议"），由平台公司所在地人民法院管辖。</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

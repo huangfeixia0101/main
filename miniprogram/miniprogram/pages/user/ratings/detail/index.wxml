@@ -1,0 +1,55 @@
+<view class="detail-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <image src="/images/back.png" mode="aspectFit"></image>
+    </view>
+    <text class="page-title">评价详情</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 评价详情 -->
+  <block wx:if="{{!loading && evaluation}}">
+    <view class="service-info">
+      <text class="service-name">{{evaluation.serviceName}}</text>
+      <text class="service-time">{{evaluation.formattedTime}}</text>
+    </view>
+
+    <view class="rating-section">
+      <text class="section-title">服务评分</text>
+      <view class="stars-container">
+        <view class="star {{evaluation.rating >= 1 ? 'active' : ''}}"></view>
+        <view class="star {{evaluation.rating >= 2 ? 'active' : ''}}"></view>
+        <view class="star {{evaluation.rating >= 3 ? 'active' : ''}}"></view>
+        <view class="star {{evaluation.rating >= 4 ? 'active' : ''}}"></view>
+        <view class="star {{evaluation.rating >= 5 ? 'active' : ''}}"></view>
+        <text class="rating-score">{{evaluation.rating}}.0</text>
+      </view>
+    </view>
+
+    <view class="comment-section" wx:if="{{evaluation.comment}}">
+      <text class="section-title">评价内容</text>
+      <view class="comment-text">{{evaluation.comment}}</view>
+    </view>
+
+    <view class="images-section" wx:if="{{evaluation.images && evaluation.images.length > 0}}">
+      <text class="section-title">评价图片</text>
+      <view class="image-list">
+        <image 
+          wx:for="{{evaluation.images}}" 
+          wx:key="index" 
+          src="{{item}}" 
+          mode="aspectFill"
+          bindtap="previewImage"
+          data-current="{{item}}"
+          data-urls="{{evaluation.images}}"
+        ></image>
+      </view>
+    </view>
+  </block>
+</view>

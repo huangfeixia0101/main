@@ -1,0 +1,64 @@
+<view class="ratings-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="back-btn" bindtap="goBack">
+      <image src="/images/back.png" mode="aspectFit"></image>
+    </view>
+    <text class="page-title">服务评价</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading"></view>
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-container" wx:if="{{!loading && isEmpty}}">
+    <image src="/images/empty-ratings.png" mode="aspectFit"></image>
+    <text>暂无评价记录</text>
+  </view>
+
+  <!-- 评价列表 -->
+  <view class="ratings-list" wx:if="{{!loading && !isEmpty}}">
+    <view class="rating-item" wx:for="{{evaluationList}}" wx:key="_id" bindtap="viewEvaluationDetail" data-evaluation="{{item}}">
+      <view class="rating-header">
+        <text class="service-name">{{item.serviceName}}</text>
+        <text class="rating-date">{{item.createTime}}</text>
+      </view>
+      
+      <view class="rating-stars">
+        <view class="star {{item.rating >= 1 ? 'active' : ''}}"></view>
+        <view class="star {{item.rating >= 2 ? 'active' : ''}}"></view>
+        <view class="star {{item.rating >= 3 ? 'active' : ''}}"></view>
+        <view class="star {{item.rating >= 4 ? 'active' : ''}}"></view>
+        <view class="star {{item.rating >= 5 ? 'active' : ''}}"></view>
+        <text class="rating-score">{{item.rating}}.0</text>
+      </view>
+      
+      <view class="rating-comment" wx:if="{{item.comment}}">
+        <text>{{item.comment}}</text>
+      </view>
+      
+      <view class="rating-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image 
+          wx:for="{{item.images}}" 
+          wx:for-item="img" 
+          wx:key="index" 
+          src="{{img}}" 
+          mode="aspectFill"
+          catchtap="previewImage"
+          data-urls="{{item.images}}"
+          data-current="{{img}}"
+        ></image>
+      </view>
+      
+      <view class="rating-footer">
+        <view class="view-detail">
+          <text>查看详情</text>
+          <image src="/images/rightarrow.svg" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="header">
+    <text class="title">{{isEdit ? '编辑服务对象' : '新增服务对象'}}</text>
+  </view>
+
+  <view class="form-container">
+    <!-- 姓名 -->
+    <view class="form-item">
+      <text class="label">姓名</text>
+      <input class="input" value="{{patient.name}}" placeholder="请输入服务对象姓名" bindinput="onInputChange" data-field="name" />
+    </view>
+
+    <!-- 性别 -->
+    <view class="form-item">
+      <text class="label">性别</text>
+      <radio-group class="radio-group" bindchange="onGenderChange">
+        <label class="radio">
+          <radio value="male" checked="{{patient.gender === 'male'}}" color="#1aad19" />男
+        </label>
+        <label class="radio">
+          <radio value="female" checked="{{patient.gender === 'female'}}" color="#1aad19" />女
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 年龄 -->
+    <view class="form-item">
+      <text class="label">年龄</text>
+      <input class="input" type="number" value="{{patient.age}}" placeholder="请输入年龄" bindinput="onInputChange" data-field="age" />
+    </view>
+
+    <!-- 身份证号 -->
+    <view class="form-item">
+      <text class="label">身份证号</text>
+      <input class="input" value="{{patient.idCard}}" placeholder="请输入身份证号（选填）" bindinput="onInputChange" data-field="idCard" maxlength="18" />
+    </view>
+
+    <!-- 手机号码 -->
+    <view class="form-item">
+      <text class="label">手机号码</text>
+      <input class="input" type="number" value="{{patient.phone}}" placeholder="请输入手机号码（选填）" bindinput="onInputChange" data-field="phone" maxlength="11" />
+    </view>
+
+    <!-- 与本人关系 -->
+    <view class="form-item">
+      <text class="label">与本人关系</text>
+      <picker bindchange="onRelationChange" value="{{relations.indexOf(patient.relation)}}" range="{{relations}}">
+        <view class="picker {{patient.relation ? '' : 'placeholder'}}">
+          {{patient.relation || '请选择与服务对象关系'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 设为默认服务对象 -->
+    <view class="form-item switch-item">
+      <text class="label">设为默认服务对象</text>
+      <switch checked="{{patient.isDefault}}" bindchange="onSwitchChange" color="#1aad19" />
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <view class="save-btn {{loading ? 'disabled' : ''}}" bindtap="{{loading ? '' : 'savePatient'}}">
+    <text>{{loading ? '保存中...' : '保存'}}</text>
+  </view>
+</view>

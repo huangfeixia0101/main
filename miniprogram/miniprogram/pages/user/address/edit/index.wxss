@@ -1,0 +1,78 @@
+.container {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding-bottom: 120rpx;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.header .title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-container {
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.form-item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.textarea {
+  flex: 1;
+  height: 120rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.placeholder {
+  color: #999;
+}
+
+.switch-item {
+  justify-content: space-between;
+}
+
+.save-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1aad19;
+  color: #fff;
+  text-align: center;
+  padding: 30rpx 0;
+  font-size: 32rpx;
+}
+
+.save-btn.disabled {
+  background-color: #9ed99e;
+}

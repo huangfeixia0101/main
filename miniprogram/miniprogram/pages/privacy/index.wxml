@@ -1,0 +1,155 @@
+<view class="container">
+  <view class="title">隐私政策</view>
+  <view class="content">
+    <view class="section">
+      <view class="section-title">《隐私政策》</view>
+      <view class="section-content">
+        <view class="paragraph">应用名称：贵宾健康 开发者名称：贵宾健康管理（杭州）有限责任公司（以下或称"我们"）非常注重保护用户（"您"）的个人信息及隐私，我们深知个人信息对您的重要性，并将按照法律法规要求和业界成熟的安全标准，采取相应的安全保护措施来保护您的个人信息。我们希望通过本隐私政策向您清晰地介绍在使用我们的产品/服务时，我们如何处理您的个人信息，以及我们为您提供的访问、更正、删除和保护这些信息的方式。</view>
+        
+        <view class="paragraph important">【特别提示】请您在使用我们提供的各项产品/服务前，仔细阅读并充分理解本《隐私政策》（重点内容我们已将字体加粗请您特别关注）并作出相应选择。一旦您使用或继续使用我们的产品/服务时，即意味着您同意我们按照本隐私政策处理您的相关信息。</view>
+        
+        <view class="paragraph">如对本隐私政策有任何疑问，您可以通过本隐私政策"如何联系我们"中提供的方式与我们联系） 。</view>
+        
+        <view class="paragraph">贵宾健康官方平台及关联公司提供的产品/服务（包括未设独立隐私政策的贵宾健康官方平台及关联公司提供的产品/服务），均适用本隐私政策。 这些产品/服务包括贵宾健康网站、用户端以及相关微信开放平台账号或小程序等。 此外，针对某些特定的产品/服务，我们还将制定单独的隐私政策，向您说明这些产品/服务的特殊政策。如相关特定的隐私政策与本隐私政策有不一致之处，适用该特定隐私政策。</view>
+        
+        <view class="paragraph">请您注意，本政策不适用于您通过我们的产品/服务而接入的其他第三方产品/服务("其他第三方"，包括您的交易相对方、任何第三方网站以及第三方服务提供者等)，具体规定请参照该第三方的隐私政策或类似声明。</view>
+
+        <view class="paragraph">我们强烈建议您花时间阅读该第三方的隐私政策，就像阅读我们的政策一样。我们不对第三方如何使用他们向您收集的个人信息负责，也不能控制其使用。我们的隐私政策不适用通过我们的服务链接的其他网站。</view>
+        
+        <view class="paragraph">本政策将帮助您了解以下内容：</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">一、我们如何收集和使用您的个人信息</view>
+      <view class="section-content">
+        <view class="paragraph">在您使用我们的产品/服务时，您需要/可以选择授权我们收集和使用个人信息的场景包括：</view>
+        
+        <view class="paragraph">1、为了向您提供我们产品/服务的基本功能，您需要授权我们收集、使用必要信息的情形，如您拒绝提供前述必要信息，您将无法正常使用我们的产品/服务；</view>
+        
+        <view class="paragraph">2、为了向您提供我们产品/服务的拓展功能，您可以选择授权我们收集、使用信息的情形，如您拒绝提供前述信息，您将无法正常使用相关附加功能或无法实现我们拟达到的功能效果，但并不会影响您正常使用我们产品/服务的基本功能。</view>
+        
+        <view class="sub-section">
+          <view class="sub-title">（一）您需要授权我们收集和使用个人信息的场景</view>
+          <view class="paragraph">我们会遵循正当、合法、必要的原则，出于本政策所述的下列目的收集和使用您的个人信息。</view>
+          
+          <view class="paragraph">1、帮助您成为我们的用户</view>
+          <view class="paragraph">为遵守法律法规的要求，您可以使用手机号登录贵宾健康官方平台，即可成为我们的用户，使用全部功能服务；</view>
+          
+          <view class="paragraph">2、为您提供报名、订单管理功能</view>
+          <view class="paragraph">您在贵宾健康官方平台上报名陪诊师时，您需要提供联系人信息（姓名、性别、电话号码等）、地址信息等。</view>
+          
+          <view class="paragraph">您在贵宾健康官方平台上生成的订单中，将可能包含您的身份信息、联络信息、住址信息、支付信息等，这些都属于敏感信息，请您谨慎向他人展示或对外提供，我们也将会在展示订单信息时，在保证信息可用性的基础上尽量去标识化处理。</view>
+          
+          <view class="paragraph">3、我们可能间接收集的个人信息</view>
+          <view class="paragraph">为完成身份核验，保障账号安全，确认交易状态及为您提供售后与争议解决等目的。</view>
+          
+          <view class="paragraph">4、身份认证</view>
+          <view class="paragraph">为满足相关法律规定及监管要求、确保用户身份真实性、实现反欺诈等风控、保障系统与服务安全，在您使用特定服务/功能时，我们需要收集您的相关信息进行身份验证。</view>
+          
+          <view class="paragraph">为实现验证目的，您需要主动提供相关真实的身份信息 (证件信息，包括姓名、证件号码，根据实际情况可能有所不同，以页面提示为准)。</view>
+        </view>
+        
+        <view class="sub-section">
+          <view class="sub-title">（二）您可以选择授权我们收集和使用个人信息的场景</view>
+          <view class="paragraph">为向您提供更便捷的服务，您可以选择使用我们提供的拓展功能，我们会在符合法律规定并根据您具体授权的情况下收集并使用如下信息。这类信息将在您选择的具体功能和业务场景中进行收集，如果您不提供这些信息，不会影响您使用贵宾健康官方平台的基本功能。</view>
+          
+          <view class="paragraph">1、基于相册授权的拓展功能</view>
+          <view class="paragraph">您可以选择开启系统的相册权限，通过主动上传图片、视频等方式授权我们访问您的相册，以便于您通过上传照片或上传视频等方式发布内容。 我们会收集您选择上传发布的上述信息，此项功能您可以在系统权限中关闭，一旦关闭您将可能无法通过上传图片、视频等方式进行更换头像等， 但不会影响您享受贵宾健康官方平台服务的基本功能。</view>
+          
+          <view class="paragraph">2、基于麦克风授权的拓展功能</view>
+          <view class="paragraph">您可以选择开启系统的麦克风权限，通过使用麦克风来实现视频问诊等语音交互功能，此项功能您可以在系统权限中关闭，一旦关闭您将可能无法实现在线语音交互功能，同时会影响您享受贵宾健康官方平台的基本功能。</view>
+          
+          <view class="paragraph">3、基于存储的拓展功能</view>
+          <view class="paragraph">您可以开启系统的存储权限，为了及时更新到最新版本，APP内置了自动更新功能，需要下载并安装最新版本，所以您申请存储权限，访问你的手机存储。</view>
+        </view>
+        
+        <view class="sub-section">
+          <view class="sub-title">（三）其他</view>
+          <view class="paragraph">您可以通过贵宾健康官方平台为其他人预定各类产品/服务，并提供该实际服务接收人的有关信息，此前请您确保已取得相关人的授权。 如果我们将信息用于本政策未载明的其他用途，或者将基于特定目的收集而来的信息用于其他目的时，会单独征求您的授权同意。</view>
+        </view>
+        
+        <view class="sub-section">
+          <view class="sub-title">（四）征得同意的例外</view>
+          <view class="paragraph">请您知悉，以下情形中，我们收集、使用个人信息无需征得您的授权同意：</view>
+          
+          <view class="paragraph">1、与国家安全、国防安全有关的；</view>
+          <view class="paragraph">2、与公共安全、公共卫生、重大公共利益有关的；</view>
+          <view class="paragraph">3、与犯罪侦查、起诉、审判和判决执行等有关的；</view>
+          <view class="paragraph">4、出于维护个人信息主体或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；</view>
+          <view class="paragraph">5、所收集的个人信息是个人信息主体自行向社会公众公开的；</view>
+          <view class="paragraph">6、从合法公开披露的信息中收集的您的个人信息的，如合法的新闻报道、政府信息公开等渠道；</view>
+          <view class="paragraph">7、根据您的要求签订合同所必需的；</view>
+          <view class="paragraph">8、用于维护所提供的产品与/或服务的安全稳定运行所必需的，例如发现、处置产品与/或服务的故障；</view>
+          <view class="paragraph">9、为合法的新闻报道所必需的；</view>
+          <view class="paragraph">10、学术研究机构基于公共利益开展统计或学术研究所必要，且对外提供学术研究或描述的结果时，对结果中所包含的个人信息进行去标识化处理的；</view>
+          <view class="paragraph">11、法律法规规定的其他情形。</view>
+          
+          <view class="paragraph">请注意，单独或与其他信息相结合无法识别您的身份或者与您直接建立联系的信息，不属于个人信息。如果我们将单独无法与任何特定个人建立联系的信息与其他信息结合用于识别自然人个人身份，或者将其与个人信息结合使用，则在结合使用期间，此类信息将被视为个人信息。</view>
+        </view>
+        
+        <view class="sub-section">
+          <view class="sub-title">（五）个人信息的使用规则</view>
+          <view class="paragraph">为满足您的需求，维护、改进我们的产品或服务质量，我们会在符合法律规定并根据您具体授权的情况下使用如下信息：</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">二、我们如何共享、转让、公开披露您的个人信息</view>
+      <view class="section-content">
+        <view class="sub-section">
+          <view class="sub-title">（一）共享</view>
+          <view class="paragraph">我们不会与贵宾健康官方平台以外的任何公司、组织和个人共享您的个人信息，但以下情况除外：</view>
+          
+          <view class="paragraph">1、获得您明确同意或授权的共享。</view>
+          <view class="paragraph">2、基于法定情形下：根据法律法规的规定、诉讼争议解决需要，或行政、司法等有权机关依法提出的要求。</view>
+          <view class="paragraph">3、与关联公司共享：为向您提供一致化服务以及便于您进行统一管理，我们可能会将您的个人信息与我们的关联公司共享。但我们只会共享必要的个人信息，如果我们共享您的个人敏感信息或者关联方改变个人信息的使用目的，将再次征求您的授权同意。</view>
+          <view class="paragraph">4、与合作伙伴分享：我们可能会向业务合作伙伴共享为您提供服务所必要的订单信息、账户信息、支付信息等。 我们的业务合作伙伴包括以下类型：</view>
+          <view class="paragraph">供应商/服务提供商。仅为实现本政策中声明的目的，我们的某些服务将由业务合作伙伴
+          <view class="paragraph">提供。以保障为您提供的服务顺利完成，我们可能会将您的个人信息共享给上述合作伙伴，包括配送业务、技术服务、支付服务、金融业务等。其中可能包括您的联络信息、订单信息、支付信息、地址信息等，以保障为您提供的服务顺利完成。</view>
+          <view class="paragraph">5、基于协议约定：依据您与我们签署的相关协议(包括在线签署的电子协议及平台规则)或法律文件，有必要向第三方共享时。</view>
+          <view class="paragraph">6、基于合理商业习惯：例如与第三方共享联合营销活动中的中奖信息，以便第三方能及时向您发放奖品；或者在我们计划与其他公司进行资本市场活动(包括但不限于IPO、债券发行)接受尽职调查时。</view>
+          <view class="paragraph">7、基于学术研究；例如为科研机构开展统计或学术研究之必要。</view>
+          <view class="paragraph">8、基于符合法律法规的社会公共利益等。</view>
+          <view class="paragraph">我们会通过应用程序接口（API）、软件工具开发包（SDK）与第三方进行必要的数据共享，不同版本的第三方SDK会有所不同，一般包括第三方账号登录类、分享类、第三方支付类、地图导航类、厂商推送类、统计类等，我们会对第三方进行严格的安全检测并约定数据保护措施。</view>
+          <view class="paragraph">请您知悉，我们仅会出于合法、正当、必要、特定、明确的目的共享您的个人信息，对我们仅为实现本政策中声明的目的与之共享个人信息的公司、组织和个人，我们会与其签署严格的信息保护和保密协定，要求他们遵守协议并采取相关的安全措施来保护您的个人信息。</view>
+        </view>
+
+        <view class="sub-section">
+          <view class="sub-title">（二）转让</view>
+          <view class="paragraph">随着我们业务的发展，我们及我们的关联方有可能进行合并、收购、资产转让或类似的交易，如涉及个人信息的转让，我们会要求受让您个人信息的公司、组织继续接受本隐私政策的约束，否则,我们将要求该公司、组织重新征求您的授权同意。</view>
+        </view>
+
+        <view class="sub-section">
+          <view class="sub-title">（三）公开披露</view>
+          <view class="paragraph">我们仅会在以下情况下，且采取符合业界标准的安全防护措施的前提下，才可能公开披露您的个人信息：</view>
+          <view class="paragraph">1、根据您的需求，在您明确同意的披露方式下披露您所指定的个人信息；</view>
+          <view class="paragraph">2、根据法律、法规的要求、强制性的行政执法或司法要求所必须提供您个人信息的情况下，我们可能会依据所要求的个人信息类型和披露方式公开披露您的个人信息。在符合法律法规的前提下，当我们收到上述披露信息的请求时，我们会要求必须出具与之相应的法律文件，如传票或调查函。</view>
+          <view class="paragraph">请注意，您在使用我们服务时自愿发布甚至公开分享的信息，可能会涉及您或他人的个人信息甚至个人敏感信息，如您的交易信息，以及您在评价时选择上传包含个人信息的文字、图片或视频等各种形式的信息。请您在使用我们的服务时更加谨慎地考虑，是否要发布甚至公开分享相关信息。</view>
+        </view>
+
+        <view class="sub-section">
+          <view class="sub-title">（四）共享、转让、公开披露个人信息时事先征得授权同意的例外</view>
+          <view class="paragraph">以下情形中，共享、转让、公开披露您的个人信息无需事先征得您的授权同意：</view>
+          <view class="paragraph">1、与国家安全、国防安全有关的；</view>
+          <view class="paragraph">2、与公共安全、公共卫生、重大公共利益有关的；</view>
+          <view class="paragraph">3、与犯罪侦查、起诉、审判和判决执行等有关的；</view>
+          <view class="paragraph">4、出于维护您或其他个人的生命、财产等重大合法权益但又很难得到本人同意的；</view>
+          <view class="paragraph">5、其他维护公共利益的情形，例如您的信用评价信息需要被公开/共享；</view>
+          <view class="paragraph">6、您自行向社会公众公开的个人信息；</view>
+          <view class="paragraph">7、从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道。 根据法律规定，共享、转让、公开披露经去标识化处理的个人信息，且确保数据接收方无法复原并重新识别个人信息主体的，我们对此类数据的处理将无需另行向您通知并征得您的同意。</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-content">
+        <view class="paragraph">本协议发布即生效。</view>
+        <view class="paragraph">贵宾健康管理（杭州）有限责任公司</view>
+        <view class="paragraph">2025年02月27日</view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>

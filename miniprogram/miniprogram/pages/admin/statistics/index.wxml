@@ -1,0 +1,189 @@
+<!--pages/admin/statistics/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">数据统计</view>
+    <view class="subtitle">查看系统运营数据</view>
+  </view>
+
+  <!-- 日期范围选择 -->
+  <view class="date-range">
+    <view class="range-item {{dateRange === 'week' ? 'active' : ''}}" bindtap="changeDateRange" data-range="week">近7天</view>
+    <view class="range-item {{dateRange === 'month' ? 'active' : ''}}" bindtap="changeDateRange" data-range="month">近30天</view>
+    <view class="range-item {{dateRange === 'year' ? 'active' : ''}}" bindtap="changeDateRange" data-range="year">近12个月</view>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view class="stats-overview">
+    <!-- 用户统计 -->
+    <view class="stat-card">
+      <view class="card-header">
+        <image class="card-icon" src="/images/icons/users.png"></image>
+        <text>用户统计</text>
+      </view>
+      <view class="card-content">
+        <view class="stat-item">
+          <text class="stat-label">总用户数</text>
+          <text class="stat-value">{{stats.userCount.total}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">患者用户</text>
+          <text class="stat-value">{{stats.userCount.patient}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">陪护用户</text>
+          <text class="stat-value">{{stats.userCount.escort}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 订单统计 -->
+    <view class="stat-card">
+      <view class="card-header">
+        <image class="card-icon" src="/images/icons/orders.png"></image>
+        <text>订单统计</text>
+      </view>
+      <view class="card-content">
+        <view class="stat-item">
+          <text class="stat-label">总订单数</text>
+          <text class="stat-value">{{stats.orderCount.total}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">待支付</text>
+          <text class="stat-value">{{stats.orderCount.unpaid}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">待接单</text>
+          <text class="stat-value">{{stats.orderCount.paid}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">服务中</text>
+          <text class="stat-value">{{stats.orderCount.inService}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">已完成</text>
+          <text class="stat-value">{{stats.orderCount.completed}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">已取消</text>
+          <text class="stat-value">{{stats.orderCount.cancelled}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 服务统计 -->
+    <view class="stat-card">
+      <view class="card-header">
+        <image class="card-icon" src="/images/icons/services.png"></image>
+        <text>服务统计</text>
+      </view>
+      <view class="card-content">
+        <view class="stat-item">
+          <text class="stat-label">总服务数</text>
+          <text class="stat-value">{{stats.serviceCount.total}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">已上线</text>
+          <text class="stat-value">{{stats.serviceCount.active}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">已下线</text>
+          <text class="stat-value">{{stats.serviceCount.inactive}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 收入统计 -->
+    <view class="stat-card">
+      <view class="card-header">
+        <image class="card-icon" src="/images/icons/revenue.png"></image>
+        <text>收入统计</text>
+      </view>
+      <view class="card-content">
+        <view class="stat-item">
+          <text class="stat-label">总收入</text>
+          <text class="stat-value revenue">¥{{stats.revenue.total}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">今日收入</text>
+          <text class="stat-value revenue">¥{{stats.revenue.today}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">本周收入</text>
+          <text class="stat-value revenue">¥{{stats.revenue.thisWeek}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-label">本月收入</text>
+          <text class="stat-value revenue">¥{{stats.revenue.thisMonth}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 趋势图表 -->
+  <view class="trend-section">
+    <view class="section-title">订单趋势</view>
+    <view class="chart-container">
+      <!-- 这里可以集成第三方图表组件，如 ec-canvas 等 -->
+      <view class="chart-placeholder">
+        <text>订单趋势图表</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="trend-section">
+    <view class="section-title">收入趋势</view>
+    <view class="chart-container">
+      <!-- 这里可以集成第三方图表组件，如 ec-canvas 等 -->
+      <view class="chart-placeholder">
+        <text>收入趋势图表</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门服务 -->
+  <view class="top-services">
+    <view class="section-title">热门服务</view>
+    <view class="service-list">
+      <view class="service-item" wx:for="{{topServices}}" wx:key="_id">
+        <view class="service-name">{{item.serviceName || '未知服务'}}</view>
+        <view class="service-stats">
+          <text class="service-count">订单数: {{item.count}}</text>
+          <text class="service-revenue">收入: ¥{{item.totalAmount}}</text>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{topServices.length === 0}}">
+        <text>暂无服务数据</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近订单 -->
+  <view class="recent-orders">
+    <view class="section-title">最近订单</view>
+    <view class="order-list">
+      <view class="order-item" wx:for="{{recentOrders}}" wx:key="_id">
+        <view class="order-header">
+          <text class="order-no">订单号: {{item.orderNo}}</text>
+          <text class="order-status">{{item.statusText}}</text>
+        </view>
+        <view class="order-info">
+          <text class="order-service">{{item.serviceName || '未知服务'}}</text>
+          <text class="order-patient">患者: {{item.patientInfo.name || '未知'}}</text>
+          <text class="order-amount">金额: ¥{{item.totalAmount}}</text>
+          <text class="order-time">时间: {{item.createTime}}</text>
+        </view>
+      </view>
+      <view class="empty-state" wx:if="{{recentOrders.length === 0}}">
+        <text>暂无订单数据</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">返回</view>
+</view>

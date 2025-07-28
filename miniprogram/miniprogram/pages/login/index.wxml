@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="logo">
+    <text class="title">贵宾健康</text>
+    <text class="subtitle">用心服务暖人心</text>
+  </view>
+  <block wx:if="{{!wxUserInfo}}">
+    <button class="login-btn {{!agreed ? 'disabled' : ''}}" bindtap="getUserProfile">授权登录</button>
+  </block>
+  <block wx:else>
+    <button class="login-btn {{!agreed ? 'disabled' : ''}}" open-type="getPhoneNumber" bindgetphonenumber="handleLogin">一键登录</button>
+  </block>
+  <view class="agreement">
+    <checkbox-group bindchange="onAgreementChange">
+      <checkbox value="agreed" checked="{{agreed}}"/>
+      <text>我已阅读并同意</text>
+      <text class="link" bindtap="showAgreement">《会员服务协议》</text>
+      <text>、</text>
+      <text class="link" bindtap="showPrivacy">《小程序隐私政策》</text>
+    </checkbox-group>
+  </view>
+  <text class="skip" bindtap="handleSkip">暂不登录</text>
+</view>

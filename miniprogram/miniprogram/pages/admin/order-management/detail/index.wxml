@@ -1,0 +1,99 @@
+<!-- pages/admin/order-management/detail/index.wxml -->
+<view class="container">
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">返回</view>
+    <view class="title">订单详情</view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <view class="order-detail" wx:else>
+    <view class="section">
+      <view class="section-title">基本信息</view>
+      <view class="info-item">
+        <text class="label">订单编号：</text>
+        <text class="value">{{orderDetail.orderNo}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">创建时间：</text>
+        <text class="value">{{orderDetail.createTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">更新时间：</text>
+        <text class="value">{{orderDetail.updateTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">订单状态：</text>
+        <text class="value status-text">{{orderDetail.statusText}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">订单金额：</text>
+        <text class="value">¥{{orderDetail.totalPrice}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">患者信息</view>
+      <view class="info-item">
+        <text class="label">姓名：</text>
+        <text class="value">{{orderDetail.patientInfo[0].name}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">性别：</text>
+        <text class="value">{{orderDetail.patientInfo[0].gender === 'male' ? '男' : '女'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">年龄：</text>
+        <text class="value">{{orderDetail.patientInfo[0].age}}岁</text>
+      </view>
+      <view class="info-item">
+        <text class="label">联系电话：</text>
+        <text class="value">{{orderDetail.patientInfo[0].phone}}  {{orderDetail.addressInfo[0].phone}}</text>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{orderDetail.escortInfo}}">
+      <view class="section-title">陪护信息</view>
+      <view class="info-item">
+        <text class="label">姓名：</text>
+        <text class="value">{{orderDetail.escortInfo.name}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">联系电话：</text>
+        <text class="value">{{orderDetail.escortInfo.phone}}</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">服务信息</view>
+      <view class="info-item">
+        <text class="label">服务类型：</text>
+        <text class="value">{{orderDetail.serviceName}}{{orderDetail.quantity}}*{{orderDetail.spec}}</text>
+      </view>
+      <!-- <view class="info-item">
+        <text class="label">服务时长：</text>
+        <text class="value">{{orderDetail.serviceDuration}}小时</text>
+      </view> -->
+      <view class="info-item">
+        <text class="label">服务地点：</text>
+        <text class="value" wx:if="{{orderDetail.addressInfo[0]}}">{{orderDetail.addressInfo[0].province}}{{orderDetail.addressInfo[0].city}}{{orderDetail.addressInfo[0].district}}{{orderDetail.addressInfo[0].address}}</text>
+        <text class="value" wx:else>{{orderDetail.serviceLocation}}</text>
+      </view>
+      <view class="info-item" wx:if="{{orderDetail.serviceStartTime}}">
+        <text class="label">开始时间：</text>
+        <text class="value">{{orderDetail.serviceStartTime}}</text>
+      </view>
+      <view class="info-item" wx:if="{{orderDetail.serviceEndTime}}">
+        <text class="label">结束时间：</text>
+        <text class="value">{{orderDetail.serviceEndTime}}</text>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{orderDetail.remarks}}">
+      <view class="section-title">备注信息</view>
+      <view class="remarks">{{orderDetail.remarks}}</view>
+    </view>
+  </view>
+</view>

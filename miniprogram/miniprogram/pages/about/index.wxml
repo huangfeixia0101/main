@@ -1,0 +1,74 @@
+<view class="about-container">
+  <!-- 顶部公司信息 -->
+  <view class="company-section">
+    <image class="company-logo" src="{{companyInfo.logo}}" mode="aspectFit"></image>
+    <view class="company-name">{{companyInfo.name}}</view>
+    <view class="company-desc">{{companyInfo.description}}</view>
+  </view>
+
+  <!-- 愿景和使命 -->
+  <view class="vision-mission-section">
+    <view class="section-card">
+      <view class="section-title">我们的愿景</view>
+      <view class="section-content">{{companyInfo.vision}}</view>
+    </view>
+    <view class="section-card">
+      <view class="section-title">我们的使命</view>
+      <view class="section-content">{{companyInfo.mission}}</view>
+    </view>
+  </view>
+
+  <!-- 团队信息 -->
+  <view class="team-section">
+    <view class="section-card">
+      <view class="section-title">{{teamInfo.title}}</view>
+      <view class="section-content">{{teamInfo.description}}</view>
+    </view>
+  </view>
+
+  <!-- 服务特色 -->
+  <view class="features-section">
+    <view class="section-title">服务特色</view>
+    <view class="features-grid">
+      <view class="feature-item" wx:for="{{serviceFeatures}}" wx:key="title">
+        <image class="feature-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="feature-title">{{item.title}}</view>
+        <view class="feature-desc">{{item.description}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="contact-section">
+    <view class="section-title">联系我们</view>
+    <view class="contact-item" bindtap="callPhone">
+      <view class="contact-label">电话：</view>
+      <view class="contact-value">{{contactInfo.phone}}</view>
+      <view class="contact-action">拨打</view>
+    </view>
+    <view class="contact-item" bindtap="copyText" data-text="{{contactInfo.email}}">
+      <view class="contact-label">邮箱：</view>
+      <view class="contact-value">{{contactInfo.email}}</view>
+      <view class="contact-action">复制</view>
+    </view>
+    <view class="contact-item">
+      <view class="contact-label">地址：</view>
+      <view class="contact-value">{{contactInfo.address}}</view>
+    </view>
+    <view class="contact-item" bindtap="copyText" data-text="{{contactInfo.wechat}}">
+      <view class="contact-label">微信：</view>
+      <view class="contact-value">{{contactInfo.wechat}}</view>
+      <view class="contact-action">复制</view>
+    </view>
+  </view>
+
+  <!-- 底部链接 -->
+  <view class="footer-section">
+    <view class="footer-link" bindtap="viewUserAgreement">用户协议</view>
+    <view class="footer-divider">|</view>
+    <view class="footer-link" bindtap="viewPrivacyPolicy">隐私政策</view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version-info">版本 {{version}}</view>
+</view>

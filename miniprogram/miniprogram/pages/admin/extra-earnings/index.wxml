@@ -1,0 +1,58 @@
+<!--pages/admin/extra-earnings/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">添加额外收益</view>
+    <view class="subtitle">为陪护人员添加额外收益（奖金、补贴等）</view>
+  </view>
+
+  <view class="form-container">
+    <!-- 选择陪护人员 -->
+    <view class="form-item">
+      <view class="form-label">选择陪护人员</view>
+      <picker bindchange="selectEscort" range="{{escortList}}" range-key="name">
+        <view class="picker {{selectedEscortName ? '' : 'placeholder'}}">
+          {{selectedEscortName || '请选择陪护人员'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 金额 -->
+    <view class="form-item">
+      <view class="form-label">金额（元）</view>
+      <input type="digit" class="form-input" placeholder="请输入金额" value="{{amount}}" bindinput="inputAmount" />
+    </view>
+
+    <!-- 原因类型 -->
+    <view class="form-item">
+      <view class="form-label">类型</view>
+      <radio-group class="radio-group" bindchange="selectReasonType">
+        <label class="radio">
+          <radio value="bonus" checked="{{reasonType === 'bonus'}}" />奖金
+        </label>
+        <label class="radio">
+          <radio value="subsidy" checked="{{reasonType === 'subsidy'}}" />补贴
+        </label>
+        <label class="radio">
+          <radio value="other" checked="{{reasonType === 'other'}}" />其他
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 原因说明 -->
+    <view class="form-item">
+      <view class="form-label">原因说明</view>
+      <textarea class="form-textarea" placeholder="请输入原因说明" value="{{reason}}" bindinput="inputReason"></textarea>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitExtraEarning" loading="{{submitting}}" disabled="{{submitting}}">提交</button>
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">返回</view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

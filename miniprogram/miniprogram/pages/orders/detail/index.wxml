@@ -1,0 +1,156 @@
+<view class="order-detail-container" wx:if="{{orderInfo}}">
+  <!-- 订单状态 -->
+  <view class="status-section">
+    <view class="status-icon {{orderInfo.status}}">
+      <text class="status-text">{{statusText[orderInfo.status]}}</text>
+    </view>
+  </view>
+
+  <!-- 患者信息 -->
+  <view class="info-section" wx:if="{{orderInfo.patientInfo}}">
+    <view class="section-title">患者信息</view>
+    <view class="info-item">
+      <text class="label">姓名</text>
+      <text class="value">{{orderInfo.patientInfo[0].name}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">性别</text>
+      <text class="value">{{orderInfo.patientInfo[0].gender === 'male' ? '男' : '女'}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">年龄</text>
+      <text class="value">{{orderInfo.patientInfo[0].age}}岁</text>
+    </view>
+    <view class="info-item">
+      <text class="label">联系电话</text>
+      <text class="value">{{orderInfo.patientInfo[0].phone}}  {{orderInfo.addressInfo[0].phone}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">服务地点</text>
+      <text class="value">{{orderInfo.addressInfo[0].province}}{{orderInfo.addressInfo[0].city}}{{orderInfo.addressInfo[0].district}}{{orderInfo.addressInfo[0].address}}</text>
+    </view>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-section">
+    <view class="section-title">订单信息</view>
+    <view class="info-item">
+      <text class="label">订单编号</text>
+      <text class="value">{{orderInfo._id}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">服务名称</text>
+      <text class="value">{{orderInfo.serviceName}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">规格</text>
+      <text class="value">{{orderInfo.spec}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">数量</text>
+      <text class="value">{{orderInfo.quantity}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">创建时间</text>
+      <text class="value">{{orderInfo.createTime}}</text>
+    </view>
+    <view class="info-item" wx:if="{{orderInfo.payTime}}">
+      <text class="label">支付时间</text>
+      <text class="value">{{orderInfo.payTime}}</text>
+    </view>
+    <view class="info-item" wx:if="{{orderInfo.completeTime}}">
+      <text class="label">完成时间</text>
+      <text class="value">{{orderInfo.completeTime}}</text>
+    </view>
+    <view class="info-item total">
+      <text class="label">总价</text>
+      <text class="value price">¥{{orderInfo.totalPrice}}</text>
+    </view>
+  </view>
+
+  <!-- 评价信息 -->
+  <view class="evaluation-section" wx:if="{{orderInfo.status === orderStatus.COMPLETED}}">
+    <view class="section-title">服务评价</view>
+    <view class="evaluation-content" wx:if="{{evaluation}}">
+      <view class="rating-info">
+        <view class="stars">
+          <view class="star {{evaluation.rating >= index + 1 ? 'active' : ''}}" wx:for="{{5}}" wx:key="index"></view>
+        </view>
+        <text class="rating-text">{{evaluation.rating}}分</text>
+      </view>
+      <view class="comment" wx:if="{{evaluation.comment}}">
+        <text>{{evaluation.comment}}</text>
+      </view>
+      <view class="evaluation-images" wx:if="{{evaluation.images.length > 0}}">
+        <image wx:for="{{evaluation.images}}" wx:key="index" src="{{item}}" mode="aspectFill" bindtap="previewEvaluationImage" data-url="{{item}}"></image>
+      </view>
+      <view class="evaluation-info">
+        <text class="evaluation-time">{{evaluation.createTime}}</text>
+        <text class="anonymous" wx:if="{{evaluation.isAnonymous}}">匿名评价</text>
+      </view>
+    </view>
+    <view class="no-evaluation" wx:else>
+      <text>暂无评价信息</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <!-- 患者用户操作按钮 -->
+    <block wx:if="{{isPatient}}">
+      <!-- 待支付状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.UNPAID}}">
+        <button class="action-btn cancel" bindtap="handleStatusChange" data-status="{{orderStatus.CANCELLED}}">取消订单</button>
+        <button class="action-btn primary" bindtap="handlePayment">去支付</button>
+      </block>
+
+      <!-- 服务中状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.IN_SERVICE}}">
+        <button class="action-btn primary" bindtap="handleStatusChange" data-status="{{orderStatus.COMPLETED}}">确认完成</button>
+      </block>
+
+      <!-- 已完成状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.COMPLETED}}">
+        <button class="action-btn primary" bindtap="goToEvaluation" wx:if="{{!orderInfo.hasEvaluated}}">评价服务</button>
+        <button class="action-btn disabled" wx:else>已评价</button>
+      </block>
+    </block>
+
+    <!-- 陪护人员操作按钮 -->
+    <block wx:if="{{isEscort}}">
+      <!-- 待接单状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.PAID && !orderInfo.escortId}}">
+        <button class="action-btn primary" bindtap="handleStatusChange" data-status="{{orderStatus.IN_SERVICE}}">接单</button>
+      </block>
+
+      <!-- 服务中状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.IN_SERVICE && orderInfo.escortId === app.globalData.openid}}">
+        <button class="action-btn primary" bindtap="handleStatusChange" data-status="{{orderStatus.COMPLETED}}">完成服务</button>
+      </block>
+
+      <!-- 已完成状态 -->
+      <block wx:if="{{orderInfo.status === orderStatus.COMPLETED && orderInfo.escortId === app.globalData.openid}}">
+        <button class="action-btn disabled">服务已完成</button>
+      </block>
+    </block>
+
+    <!-- 返回首页按钮 -->
+    <button class="action-btn home" bindtap="goToHome">返回首页</button>
+    
+    <!-- 联系客服按钮 -->
+    <button class="contact-btn" open-type="contact">联系客服</button>
+  </view>
+</view>
+
+<!-- 未登录状态或加载中状态 -->
+<view wx:else class="state-container">
+  <view class="login-prompt" wx:if="{{!isLogin}}">
+    <image class="login-icon" src="/images/avatar.png" mode="aspectFit"></image>
+    <view class="prompt-text">请先登录后查看订单信息</view>
+    <navigator url="/pages/login/index" open-type="navigate" class="login-btn">去登录</navigator>
+  </view>
+  <view class="empty-state" wx:else>
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在加载订单信息...</text>
+  </view>
+</view>

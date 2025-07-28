@@ -1,0 +1,204 @@
+<view class="container">
+  <!-- 设置向导组件 -->
+  <period-setup id="periodSetup" visible="{{showSetupWizard}}" isUpdate="{{isUpdateSetup}}" bindsetupComplete="onSetupComplete" bindclose="onSetupClose"></period-setup>
+
+  <!-- 月份选择器 -->
+  <view class="month-selector">
+    <view class="month-text-container">
+      <text class="month-text-main">{{currentYear}}年 {{currentMonthNumber}}月</text>
+      <!-- <text class="month-text-lunar">农历 冬月</text> --> <!-- 农历信息需要JS支持 -->
+    </view>
+    <view class="month-nav">
+      <image class="nav-arrow" src="/assets/icons/arrow-left-black.png" bindtap="changeMonth" data-direction="prev"></image>
+      <image class="nav-arrow" src="/assets/icons/arrow-right-black.png" bindtap="changeMonth" data-direction="next"></image>
+    </view>
+
+  </view>
+
+  <!-- 日历头部 -->
+  <view class="calendar-header">
+    <view class="weekday">日</view>
+    <view class="weekday">一</view>
+    <view class="weekday">二</view>
+    <view class="weekday">三</view>
+    <view class="weekday">四</view>
+    <view class="weekday">五</view>
+    <view class="weekday">六</view>
+  </view>
+
+  <!-- 日历主体 -->
+  <view class="calendar-body">
+    <view class="calendar-row" wx:for="{{calendarRows}}" wx:for-item="rowItems" wx:key="rowIndex">
+      <block wx:for="{{rowItems}}" wx:for-item="dayItem" wx:key="fullDate">
+        <view class="calendar-day {{dayItem.isPeriod ? 'period-day' : ''}} {{dayItem.isPredictedOvulation ? 'predicted-ovulation-day' : ''}} {{dayItem.isFertile ? 'fertile-day' : ''}} {{dayItem.isSafe ? 'safe-day' : ''}} {{dayItem.isToday ? 'today-highlight' : ''}} {{dayItem.isSelected ? 'selected-day' : ''}} {{dayItem.isOvulationDay ? 'ovulation-day-marker' : ''}}" bindtap="onDayClick" data-day="{{dayItem}}">
+          <!-- 排卵日特殊标记 -->
+          <text class="day-number {{dayItem.isOtherMonth ? 'other-month-day' : ''}}">{{dayItem.day}}</text>
+          <!-- <text class="day-lunar">{{dayItem.lunar}}</text> --> <!-- 农历日期需要JS支持 -->
+          <view wx:if="{{dayItem.isOvulationDay}}" class="ovulation-highlight-box">
+            <view class="ovulation-special-marker"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 信息展示区 -->
+  <view class="info-section" wx:if="{{selectedDateInfo}}">
+    <!-- 日期状态头部 -->
+    <view class="date-status-header">
+      <view class="date-info">
+        <text class="date-text">{{selectedDateInfo.monthDay}}</text>
+        <text class="weekday-text">{{selectedDateInfo.weekday}}</text>
+      </view>
+      <view class="status-info">
+        <text class="status-text">{{selectedDateInfo.statusText}}</text>
+      </view>
+    </view>
+    
+    <!-- 信息内容区 -->
+    <view class="info-content">
+      <!-- 动态生成信息项 -->
+      <block wx:for="{{selectedDateInfo.infoItems}}" wx:key="type">
+        <!-- 如果是按钮项，独立显示 -->
+        <view wx:if="{{item.isButton}}" class="standalone-button" bindtap="onInfoItemChange" data-type="{{item.type}}">
+          <text class="button-text">{{item.text}}</text>
+        </view>
+        <!-- 普通信息项 -->
+        <view wx:else class="info-item {{item.isCheckbox ? 'note-item' : ''}}" data-type="{{item.type}}">
+          <view class="info-dot {{item.type === 'period_end' || item.type === 'period_start' ? 'period-dot' : item.type === 'love_warning' || item.type === 'fertile_day' ? 'fertile-dot' : item.type === 'pregnancy_rate' ? 'pregnancy-dot' : 'note-dot'}}"></view>
+          
+          <!-- 带值的信息项 -->
+          <block wx:if="{{item.value}}">
+            <text class="info-text">{{item.text}}</text>
+            <text class="info-value">{{item.value}}</text>
+          </block>
+          
+          <!-- 不带值的信息项 -->
+          <block wx:else>
+            <text class="info-text">{{item.text}}</text>
+            <!-- 如果是复选框项 -->
+            <checkbox wx:if="{{item.isCheckbox}}" class="info-checkbox" value="{{item.type}}" checked="{{item.checked}}" bindchange="onInfoItemChange" data-type="{{item.type}}"></checkbox>
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 日历图例说明 -->
+  <view class="calendar-legend">
+    <view class="legend-item">
+      <view class="legend-color safe-legend"></view>
+      <text class="legend-text">安全期</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-color fertile-legend"></view>
+      <text class="legend-text">易孕期</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-color predicted-legend"></view>
+      <text class="legend-text">月经期</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-color ovulation-legend"></view>
+      <text class="legend-text">排卵日</text>
+    </view>
+  </view>
+
+  <!-- 备注编辑器 -->
+  <note-editor 
+    visible="{{showNoteEditor}}" 
+    selectedDate="{{noteEditorDate}}" 
+    existingNote="{{noteEditorExistingNote}}"
+    bindsave="onNoteEditorSave"
+    bindclose="onNoteEditorClose">
+  </note-editor>
+
+  <!-- 底部导航栏 -->
+  <view class="footer">
+    <view class="footer-item {{activeTab === 'settings' ? 'footer-item-active' : ''}}" bindtap="handleFooterTap" data-action="settings">
+      <image class="footer-icon" src="{{activeTab === 'settings' ? '/assets/icons/settings-active.png' : '/assets/icons/settings-inactive.png'}}"></image>
+      <text class="footer-text {{activeTab === 'settings' ? 'footer-text-active' : ''}}">设置</text>
+    </view>
+    <view class="footer-item {{activeTab === 'sync' ? 'footer-item-active' : ''}} {{syncStatus}}" bindtap="handleFooterTap" data-action="sync">
+      <image class="footer-icon {{syncStatus === 'syncing' ? 'rotating' : ''}}" src="{{activeTab === 'sync' ? '/assets/icons/sync-active.png' : '/assets/icons/sync-inactive.png'}}"></image>
+      <text class="footer-text {{activeTab === 'sync' ? 'footer-text-active' : ''}}">同步</text>
+    </view>
+    <button class="footer-item {{activeTab === 'share' ? 'footer-item-active' : ''}}" open-type="share" bindtap="handleFooterTap" data-action="share">
+      <image class="footer-icon" src="{{activeTab === 'share' ? '/assets/icons/share-active.png' : '/assets/icons/share-inactive.png'}}"></image>
+      <text class="footer-text {{activeTab === 'share' ? 'footer-text-active' : ''}}">分享</text>
+    </button>
+    <button class="footer-item {{activeTab === 'service' ? 'footer-item-active' : ''}}" open-type="contact" bindtap="handleFooterTap" data-action="service">
+      <image class="footer-icon" src="{{activeTab === 'service' ? '/assets/icons/service-active.png' : '/assets/icons/service-inactive.png'}}"></image>
+      <text class="footer-text {{activeTab === 'service' ? 'footer-text-active' : ''}}">客服</text>
+    </button>
+  </view>
+
+  <!-- 同步选项面板 -->
+  <view class="sync-options-overlay" wx:if="{{showSyncOptions}}" bindtap="closeSyncOptions">
+    <view class="sync-options-panel" catchtap="stopPropagation">
+      <view class="sync-options-header">
+        <view class="sync-options-title">数据同步</view>
+        <view class="sync-options-close" bindtap="closeSyncOptions">×</view>
+      </view>
+      <view class="sync-options-content">
+        <view class="sync-option-item" bindtap="selectSyncOption" data-type="upload">
+          <view class="sync-option-icon upload-icon"></view>
+          <view class="sync-option-info">
+            <view class="sync-option-title">上传数据到云端</view>
+            <view class="sync-option-desc">将本地数据备份到云端，换机后数据不丢失</view>
+          </view>
+          <view class="sync-option-arrow"></view>
+        </view>
+        <view class="sync-option-item" bindtap="selectSyncOption" data-type="download">
+          <view class="sync-option-icon download-icon"></view>
+          <view class="sync-option-info">
+            <view class="sync-option-title">从云端下载数据</view>
+            <view class="sync-option-desc">从云端恢复数据，导入历史数据</view>
+          </view>
+          <view class="sync-option-arrow"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 同步进度条 -->
+  <view class="sync-progress-overlay" wx:if="{{showSyncProgress}}" catchtap="stopPropagation">
+    <view class="sync-progress-panel">
+      <view class="sync-progress-header">
+        <view class="sync-progress-title">{{syncProgressTitle}}</view>
+      </view>
+      <view class="sync-progress-bar-container">
+        <view class="sync-progress-bar" style="width: {{syncProgress}}%;"></view>
+      </view>
+      <view class="sync-progress-percent">{{syncProgress}}%</view>
+    </view>
+  </view>
+
+  <!-- 同步提示框 -->
+  <view class="sync-tip {{showSyncTip ? 'show' : ''}} {{syncTipType}}" wx:if="{{showSyncTip}}">
+    <view class="sync-tip-icon {{syncTipType}}-icon"></view>
+    <view class="sync-tip-text">{{syncTipText}}</view>
+  </view>
+
+  <!-- 下载确认对话框 -->
+  <view class="download-confirm-overlay" wx:if="{{showDownloadConfirm}}" bindtap="cancelDownload">
+    <view class="download-confirm-panel" catchtap="stopPropagation">
+      <view class="download-confirm-header">
+        <view class="download-confirm-title">确认下载</view>
+      </view>
+      <view class="download-confirm-content">
+        <view class="download-confirm-message">从云端下载数据将覆盖本地数据，确定要继续吗？</view>
+      </view>
+      <view class="download-confirm-footer">
+        <button class="download-confirm-btn cancel" bindtap="cancelDownload">取消</button>
+        <button class="download-confirm-btn confirm" bindtap="confirmDownload">确定</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 咨询医生链接 -->  
+  <view class="doctor-consultation">
+    <text class="consultation-text">有问题？</text>
+    <text class="consultation-link" bindtap="onDoctorConsultation">咨询医生</text>
+  </view>
+</view>

@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 服务信息 -->
+  <view class="service-info" wx:if="{{serviceDetail}}">
+    <view class="service-detail">
+      <text class="service-name">{{serviceDetail.name}}</text>
+      <view class="service-spec">
+        <text class="spec-label">规格：</text>
+        <text class="spec-value">{{selectedSpec}}</text>
+      </view>
+      <view class="service-quantity">
+        <text class="quantity-label">数量：</text>
+        <text class="quantity-value">{{quantity}}</text>
+      </view>
+      <view class="service-price">
+        <text class="price-label">价格：</text>
+        <text class="price-value">¥{{totalPrice}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务对象信息 -->
+  <view class="section-title">服务对象信息</view>
+  <view class="patient-section">
+    <view class="patient-list" wx:if="{{patients.length > 0}}">
+      <view class="patient-item {{selectedPatient._id === item._id ? 'selected' : ''}}" 
+            wx:for="{{patients}}" 
+            wx:key="_id"
+            bindtap="handleSelectPatient"
+            data-patient="{{item}}">
+        <view class="patient-info">
+          <view class="patient-name">{{item.name}}</view>
+          <view class="patient-relation">{{item.relation}}</view>
+          <view class="patient-phone" wx:if="{{item.phone}}">{{item.phone}}</view>
+          <view class="patient-idcard" wx:if="{{item.idCard}}">{{item.idCard}}</view>
+        </view>
+        <view class="patient-default" wx:if="{{item.isDefault}}">默认</view>
+      </view>
+    </view>
+    <view class="empty-tip" wx:else>暂无服务对象信息</view>
+    <view class="add-btn" bindtap="handleAddPatient">添加服务对象</view>
+  </view>
+
+  <!-- 地址信息 -->
+  <view class="section-title">服务地址</view>
+  <view class="address-section">
+    <view class="address-list" wx:if="{{addresses.length > 0}}">
+      <view class="address-item {{selectedAddress._id === item._id ? 'selected' : ''}}" 
+            wx:for="{{addresses}}" 
+            wx:key="_id"
+            bindtap="handleSelectAddress"
+            data-address="{{item}}">
+        <view class="address-info">
+          <view class="address-header">
+            <text class="address-name">{{item.name}}</text>
+            <text class="address-phone">{{item.phone}}</text>
+          </view>
+          <view class="address-detail">{{item.province}}{{item.city}}{{item.district}}{{item.address}}</view>
+        </view>
+        <view class="address-default" wx:if="{{item.isDefault}}">默认</view>
+      </view>
+    </view>
+    <view class="empty-tip" wx:else>暂无地址信息</view>
+    <view class="add-btn" bindtap="handleAddAddress">添加地址</view>
+  </view>
+
+  <!-- 备注信息 -->
+  <view class="section-title">备注信息</view>
+  <view class="remark-section">
+    <textarea class="remark-input" placeholder="请输入备注信息（选填）" bindinput="handleRemarkInput" value="{{remark}}"></textarea>
+  </view>
+
+  <!-- 底部提交栏 -->
+  <view class="bottom-bar">
+    <view class="total-price">
+      <text class="price-label">合计：</text>
+      <text class="price-value">¥{{totalPrice}}</text>
+    </view>
+    <button class="submit-btn" bindtap="handleSubmit" loading="{{loading}}">确认下单</button>
+  </view>
+</view>

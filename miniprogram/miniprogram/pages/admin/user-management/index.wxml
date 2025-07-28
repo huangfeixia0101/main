@@ -1,0 +1,76 @@
+<!--pages/admin/user-management/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">用户管理</view>
+    <view class="subtitle">管理系统中的所有用户</view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <image class="search-icon" src="/images/icons/search.png"></image>
+      <input class="search-input" placeholder="搜索用户姓名或手机号" value="{{searchKeyword}}" bindinput="searchUser" confirm-type="search" />
+      <view class="clear-icon" wx:if="{{searchKeyword}}" bindtap="clearSearch">
+        <image src="/images/icons/clear.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户类型筛选 -->
+  <view class="filter-tabs">
+    <view class="tab {{currentType === 'all' ? 'active' : ''}}" bindtap="changeUserType" data-type="all">全部</view>
+    <view class="tab {{currentType === 'patient' ? 'active' : ''}}" bindtap="changeUserType" data-type="patient">患者</view>
+    <view class="tab {{currentType === 'escort' ? 'active' : ''}}" bindtap="changeUserType" data-type="escort">陪护</view>
+  </view>
+
+  <!-- 用户列表 -->
+  <view class="user-list">
+    <block wx:if="{{userList.length > 0}}">
+      <view class="user-item" wx:for="{{userList}}" wx:key="_id" bindtap="viewUserDetail" data-id="{{item._id}}">
+        <view class="user-avatar">
+          <image src="{{item.avatarUrl || '/images/avatar.png'}}" mode="aspectFill"></image>
+        </view>
+        <view class="user-info">
+          <view class="user-name-row">
+            <text class="user-name">{{item.realName || '未设置姓名'}}</text>
+
+          </view>
+          <view class="user-phone">{{item.phoneNumber || '未绑定手机号'}}</view>
+          <view class="user-meta">
+            <text class="user-time">注册时间: {{item.createTime}}</text>
+            <view class="user-controls">
+              <picker class="user-type-picker" bindchange="changeUserRole" data-id="{{item._id}}" range="{{userTypes}}" range-key="text" value="{{item.userType === 'patient' ? 0 : item.userType === 'escort' ? 1 : 2}}" catchtap="stopPropagation">
+                <text class="user-type {{item.userType}}">{{item.userTypeText}}</text>
+              </picker>
+              <switch class="status-switch" checked="{{item.status === 'active'}}" bindchange="toggleUserStatus" data-id="{{item._id}}" data-name="{{item.realName || '未设置姓名'}}" data-status="{{item.status}}" catchtap="stopPropagation"></switch>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && userList.length === 0}}">
+      <image src="/images/empty.png" mode="aspectFit"></image>
+      <text>暂无用户数据</text>
+    </view>
+    
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+    
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{!loading && hasMore}}">
+      <text>上拉加载更多</text>
+    </view>
+    
+    <!-- 没有更多 -->
+    <view class="no-more" wx:if="{{!loading && !hasMore && userList.length > 0}}">
+      <text>没有更多数据了</text>
+    </view>
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">返回</view>
+</view>

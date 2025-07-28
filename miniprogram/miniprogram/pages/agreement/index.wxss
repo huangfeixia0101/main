@@ -1,0 +1,50 @@
+/* pages/agreement/index.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.section-intro {
+  margin-bottom: 30rpx;
+  text-indent: 2em;
+}
+
+.section {
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #333;
+}
+
+.section-content {
+  padding-left: 20rpx;
+}
+
+.paragraph {
+  margin-bottom: 20rpx;
+  text-indent: 2em;
+  line-height: 1.8;
+}
+
+.special-note {
+  color: #e64340;
+  font-weight: bold;
+}

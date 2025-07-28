@@ -1,0 +1,67 @@
+<view class="setup-container" wx:if="{{visible}}">
+  <view class="setup-mask" bindtap="onMaskTap"></view>
+  <view class="setup-content">
+    <!-- 标题和关闭按钮 -->
+    <view class="setup-header">
+      <view class="setup-title">{{setupTitle}}</view>
+      <view class="close-btn" bindtap="onClose">×</view>
+    </view>
+
+    <!-- 统一设置表单 -->
+    <view class="setup-form">
+      <!-- 末次月经来潮日 -->
+      <view class="form-item">
+        <view class="form-label">末次月经来潮日</view>
+        <view class="form-description">请选择您最近一次月经的第一天</view>
+        <picker mode="date" bindchange="onPickerChange" data-type="lastPeriod">
+          <view class="picker-view">
+            <text>{{lastPeriodDate || '请选择日期'}}</text>
+            <view class="picker-arrow">▼</view>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 月经持续天数 -->
+      <view class="form-item">
+        <view class="form-label">月经持续天数</view>
+        <view class="form-description">请选择您的月经通常持续的天数</view>
+        <picker mode="selector" range="{{periodDurationOptions}}" range-key="text" bindchange="onPickerChange" data-type="duration">
+          <view class="picker-view">
+            <text>{{periodDuration}}天</text>
+            <view class="picker-arrow">▼</view>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 月经周期 -->
+      <view class="form-item">
+        <view class="form-label">月经周期</view>
+        <view class="form-description">从月经第一天到下次月经第一天的间隔天数</view>
+        <picker mode="selector" range="{{periodCycleOptions}}" range-key="text" bindchange="onPickerChange" data-type="cycle">
+          <view class="picker-view">
+            <text>{{periodCycle}}天</text>
+            <view class="picker-arrow">▼</view>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 出生年份 -->
+      <view class="form-item">
+        <view class="form-label">出生年份</view>
+        <view class="form-description">帮助我们更准确地预测您的生理周期</view>
+        <picker mode="selector" range="{{birthYearOptions}}" range-key="text" bindchange="onPickerChange" data-type="birthYear">
+          <view class="picker-view">
+            <text>{{birthYear}}年</text>
+            <view class="picker-arrow">▼</view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- 按钮区域 -->
+    <view class="setup-buttons">
+      <button class="btn-cancel" bindtap="onClose">取消</button>
+      <button class="btn-save" bindtap="onSave">保存</button>
+    </view>
+  </view>
+</view>

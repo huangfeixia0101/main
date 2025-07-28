@@ -1,0 +1,85 @@
+<!--pages/admin/service-management/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">服务管理</view>
+    <view class="subtitle">管理系统中的所有服务项目</view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <image class="search-icon" src="/images/icons/search.png"></image>
+      <input class="search-input" placeholder="搜索服务名称或描述" value="{{searchKeyword}}" bindinput="searchService" confirm-type="search" />
+      <view class="clear-icon" wx:if="{{searchKeyword}}" bindtap="clearSearch">
+        <image src="/images/icons/clear.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="service-list">
+    <block wx:if="{{serviceList.length > 0}}">
+      <view class="service-item" wx:for="{{serviceList}}" wx:key="_id">
+        <view class="service-header">
+          <view class="service-name">{{item.name}}</view>
+          <view class="service-status {{item.statusClass}}">{{item.statusText}}</view>
+        </view>
+        
+        <view class="service-content">
+          <view class="service-info">
+            <view class="info-item">
+              <text class="label">服务描述:</text>
+              <text class="value">{{item.description}}</text>
+            </view>
+            <view class="info-item">
+              <text class="label">服务价格:</text>
+              <text class="value price">¥{{item.priceDisplay}}</text>
+            </view>
+            <view class="info-item">
+              <text class="label">服务分类:</text>
+              <text class="value">{{item.specs}}</text>
+            </view>
+            <view class="info-item">
+              <text class="label">创建时间:</text>
+              <text class="value">{{item.updateTime}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="service-footer">
+          <!-- 服务操作按钮 -->
+          <view class="service-actions">
+            <!-- 上线/下线按钮 -->
+            <button class="action-btn {{item.status === 'active' ? 'offline-btn' : 'online-btn'}}" catchtap="toggleServiceStatus" data-index="{{index}}">
+              {{item.status === 'active' ? '下线' : '上线'}}
+            </button>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!loading && serviceList.length === 0}}">
+      <image src="/images/empty.png" mode="aspectFit"></image>
+      <text>暂无服务数据</text>
+    </view>
+    
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+    
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{!loading && hasMore}}">
+      <text>上拉加载更多</text>
+    </view>
+    
+    <!-- 没有更多 -->
+    <view class="no-more" wx:if="{{!loading && !hasMore && serviceList.length > 0}}">
+      <text>没有更多数据了</text>
+    </view>
+  </view>
+
+  <!-- 返回按钮 -->
+  <view class="back-btn" bindtap="goBack">返回</view>
+</view>

@@ -1,0 +1,289 @@
+/* 备注编辑器容器 */
+.note-editor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* 遮罩层 */
+.note-editor-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* 内容区域 */
+.note-editor-content {
+  position: relative;
+  width: 100%;
+  max-height: 80%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 30rpx 30rpx 0 0;
+  padding: 40rpx 30rpx 30rpx;
+  box-shadow: 0 -10rpx 30rpx rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease-out;
+  overflow-y: auto;
+}
+
+/* 头部 */
+.note-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.note-editor-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.note-editor-close {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.note-editor-close:active {
+  transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.close-icon {
+  width: 30rpx;
+  height: 30rpx;
+  filter: brightness(0) invert(1);
+}
+
+/* 日期显示 */
+.note-editor-date {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 20rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 40rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+.date-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  display: block;
+}
+
+/* 快速选择区域 */
+.quick-options {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 20rpx;
+  display: block;
+  opacity: 0.9;
+}
+
+.options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.option-item {
+  flex: 1;
+  min-width: 200rpx;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 25rpx;
+  padding: 25rpx 20rpx;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10rpx);
+  position: relative;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+}
+
+.option-selected {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.3) 100%);
+  border: 3rpx solid #ffffff;
+  box-shadow: 0 8rpx 25rpx rgba(255, 255, 255, 0.4), inset 0 2rpx 10rpx rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.option-selected::before {
+  content: '';
+  position: absolute;
+  top: -2rpx;
+  left: -2rpx;
+  right: -2rpx;
+  bottom: -2rpx;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ffa726, #42a5f5);
+  border-radius: 27rpx;
+  z-index: -1;
+  animation: borderGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes borderGlow {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1.01);
+  }
+}
+
+.option-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.option-selected .option-text {
+  font-weight: 600;
+  font-size: 30rpx;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.option-selected .option-text::after {
+  content: '✓';
+  position: absolute;
+  right: -25rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24rpx;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+  animation: checkMark 0.5s ease-out;
+}
+
+@keyframes checkMark {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.5);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* 自定义输入区域 */
+.custom-input-section {
+  margin-bottom: 50rpx;
+}
+
+.note-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border-radius: 20rpx;
+  padding: 25rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  line-height: 1.6;
+  box-sizing: border-box;
+  backdrop-filter: blur(10rpx);
+}
+
+.note-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.char-count {
+  text-align: right;
+  margin-top: 10rpx;
+}
+
+.count-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 底部按钮 */
+.note-editor-footer {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 30rpx;
+}
+
+.footer-button {
+  flex: 1;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25rpx;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.footer-button:active {
+  transform: scale(0.98);
+}
+
+.cancel-button {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.save-button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  box-shadow: 0 6rpx 20rpx rgba(238, 90, 36, 0.3);
+}
+
+.button-text {
+  font-size: 32rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "月经记录",
+  "navigationBarBackgroundColor": "#FF8A65",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "period-setup": "/components/period-setup/index",
+    "note-editor": "/components/note-editor/index"
+  }
+}

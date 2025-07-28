@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/service-detail/index",
+    "pages/services/index",
+    "pages/login/index",
+    "pages/period-tracker/index",
+    "pages/doctor-chat/index",
+    "pages/user/index",
+    "pages/orders/list/index",
+    "pages/orders/detail/index",
+    "pages/orders/evaluation/index",
+    "pages/order-confirm/index",
+    "pages/user/edit-profile/index",
+    "pages/user/coupons/index",
+    "pages/user/redeem/index",
+    "pages/user/address/index",
+    "pages/user/address/edit/index",
+    "pages/user/patient/index",
+    "pages/user/patient/edit/index",
+    "pages/user/patient/list/index",
+    "pages/user/ratings/index",
+    "pages/user/ratings/detail/index",
+    "pages/user/earnings/index",
+    "pages/points/index",
+    "pages/points/history/index",
+    "pages/admin/dashboard/index",
+    "pages/admin/escort-manage/index",
+    "pages/admin/extra-earnings/index",
+    "pages/admin/user-management/index",
+    "pages/admin/order-management/index",
+    "pages/admin/order-management/detail/index",
+    "pages/admin/service-management/index",
+    "pages/admin/statistics/index",
+    "pages/about/index",
+    "pages/agreement/index",
+    "pages/privacy/index",
+    "pages/payment/index",
+    "pages/service-detail/agreement/agreement"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "AI医探",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": false,
+    "color": "#8A8A8A",
+    "selectedColor": "#7B68EE",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/services/index",
+        "text": "服务",
+        "iconPath": "images/services.png",
+        "selectedIconPath": "images/services-active.png"
+      },
+      {
+        "pagePath": "pages/orders/list/index",
+        "text": "订单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-active.png"
+      }
+    ]
+  },
+
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

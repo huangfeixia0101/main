@@ -1,0 +1,49 @@
+<view class="container">
+  <!-- 顶部标题栏 -->
+  <view class="header">
+    <text class="title">服务对象管理</text>
+  </view>
+
+  <!-- 服务对象列表 -->
+  <view class="patient-list" wx:if="{{patients.length > 0}}">
+    <view class="patient-item" wx:for="{{patients}}" wx:key="_id">
+      <view class="patient-info" bindtap="goToEditPatient" data-id="{{item._id}}">
+        <view class="patient-top">
+          <text class="name">{{item.name}}</text>
+          <text class="relation">{{item.relation}}</text>
+          <text class="default-tag" wx:if="{{item.isDefault}}">默认</text>
+        </view>
+        <view class="patient-detail">
+          <text class="gender">{{item.gender === 'male' ? '男' : '女'}}</text>
+          <text class="age" wx:if="{{item.age}}">{{item.age}}岁</text>
+          <text class="id-card" wx:if="{{item.idCard}}">{{item.idCard}}</text>
+          <text class="phone" wx:if="{{item.phone}}">{{item.phone}}</text>
+        </view>
+      </view>
+      <view class="patient-actions">
+        <view class="action-item" bindtap="setDefaultPatient" data-id="{{item._id}}" wx:if="{{!item.isDefault}}">
+          <text>设为默认</text>
+        </view>
+        <view class="action-item" bindtap="deletePatient" data-id="{{item._id}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && patients.length === 0}}">
+    <image src="/images/empty.png" mode="aspectFit"></image>
+    <text>暂无服务对象信息</text>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 底部添加按钮 -->
+  <view class="add-patient-btn" bindtap="goToAddPatient">
+    <text>+ 新增服务对象</text>
+  </view>
+</view>

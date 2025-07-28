@@ -1,0 +1,10 @@
+{
+  "name": "doctor-matching-pro",
+  "version": "1.0.0",
+  "description": "智能医生匹配Pro版本云函数，包含研究报告输出",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "node-fetch": "^2.6.7"
+  }
+}

@@ -1,0 +1,243 @@
+.orders-container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.status-tabs {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+  font-size: 28rpx;
+  color: #666;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+  transition: all 0.3s;
+}
+
+.tab.active {
+  color: #07c160;
+  background-color: #e8f5e9;
+  font-weight: bold;
+}
+
+.order-item {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  border-left: 8rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.order-item.UNPAID {
+  border-left-color: #ff6b6b;
+  background-color: #fff5f5;
+}
+
+.order-item.PAID {
+  border-left-color: #4dabf7;
+  background-color: #e7f5ff;
+}
+
+.order-item.IN_SERVICE {
+  border-left-color: #ffd43b;
+  background-color: #fff9db;
+}
+
+.order-item.COMPLETED {
+  border-left-color: #51cf66;
+  background-color: #ebfbee;
+}
+
+.order-item.CANCELLED {
+  border-left-color: #868e96;
+  background-color: #f8f9fa;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.order-id {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.order-status {
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 6rpx 24rpx;
+  border-radius: 6rpx;
+  min-width: 120rpx;
+  text-align:center;
+}
+
+.order-status.UNPAID {
+  color: #fff;
+  background-color: #ff6b6b;
+}
+
+.order-status.PAID {
+  color: #fff;
+  background-color: #4dabf7;
+}
+
+.order-status.IN_SERVICE {
+  color: #fff;
+  background-color: #ffd43b;
+}
+
+.order-status.COMPLETED {
+  color: #fff;
+  background-color: #51cf66;
+}
+
+.order-status.CANCELLED {
+  color: #fff;
+  background-color: #868e96;
+}
+
+.order-content {
+  margin-bottom: 20rpx;
+}
+
+.service-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.service-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.service-price {
+  font-size: 32rpx;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.order-time {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.order-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 28rpx;
+  padding: 12rpx 32rpx;
+  border-radius: 8rpx;
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1rpx solid #dee2e6;
+  min-width: 160rpx;
+}
+
+.action-btn.primary {
+  background-color: #339af0;
+  color: #fff;
+  border: none;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400rpx;
+  color: #adb5bd;
+  font-size: 30rpx;
+}
+
+.login-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80rpx 40rpx;
+  margin: 60rpx 40rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-icon {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.15);
+  border: 8rpx solid #ffffff;
+  transition: transform 0.3s ease;
+}
+
+.login-icon:active {
+  transform: scale(1.05);
+}
+
+.prompt-text {
+  font-size: 34rpx;
+  color: #333333;
+  margin-bottom: 50rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #07c160 0%, #0ab356 100%);
+  color: #ffffff;
+  padding: 24rpx 100rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 8rpx 25rpx rgba(7, 193, 96, 0.35);
+  transition: all 0.3s ease;
+  letter-spacing: 2rpx;
+}
+
+.login-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 4rpx 15rpx rgba(7, 193, 96, 0.25);
+}
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400rpx;
+  color: #adb5bd;
+  font-size: 30rpx;
+}

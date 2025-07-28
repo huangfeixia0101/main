@@ -1,0 +1,64 @@
+<!--积分历史详情页面-->
+<view class="history-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">积分记录</text>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-section">
+    <view class="filter-tabs">
+      <view class="filter-tab {{filterType === 'all' ? 'active' : ''}}" bindtap="setFilter" data-type="all">
+        全部
+      </view>
+      <view class="filter-tab {{filterType === 'earn' ? 'active' : ''}}" bindtap="setFilter" data-type="earn">
+        获得
+      </view>
+      <view class="filter-tab {{filterType === 'spend' ? 'active' : ''}}" bindtap="setFilter" data-type="spend">
+        消费
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分历史列表 -->
+  <view class="history-list" wx:if="{{filteredHistory.length > 0}}">
+    <view class="history-item" wx:for="{{filteredHistory}}" wx:key="_id">
+      <view class="history-left">
+        <view class="history-icon {{item.type}}">
+          <text wx:if="{{item.type === 'earn'}}">📈</text>
+          <text wx:else>📉</text>
+        </view>
+        <view class="history-info">
+          <text class="history-desc">{{item.description}}</text>
+          <text class="history-source" wx:if="{{item.source}}">来源：{{getSourceName(item.source)}}</text>
+          <text class="history-time">{{item.createTime}}</text>
+        </view>
+      </view>
+      <view class="history-right">
+        <view class="history-points {{item.type}}">
+          {{item.type === 'earn' ? '+' : '-'}}{{item.points}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/empty-points.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无积分记录</text>
+    <text class="empty-desc">快去分享小程序或邀请好友获取积分吧！</text>
+    <button class="go-earn-btn" bindtap="goToPoints">去赚积分</button>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore && filteredHistory.length > 0}}">
+    <button class="load-more-btn" bindtap="loadMore" loading="{{loading}}">
+      {{loading ? '加载中...' : '加载更多'}}
+    </button>
+  </view>
+
+  <!-- 没有更多数据 -->
+  <view class="no-more" wx:if="{{!hasMore && filteredHistory.length > 0}}">
+    <text>没有更多记录了</text>
+  </view>
+</view>

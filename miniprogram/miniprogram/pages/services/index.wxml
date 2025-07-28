@@ -1,0 +1,87 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input">
+      <image class="search-icon" src="/images/search.png" mode="aspectFit"/>
+      <input type="text" placeholder="搜索您需要的服务" bindinput="onSearch"/>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <swiper class="banner" 
+        indicator-dots="{{true}}" 
+        autoplay="{{true}}" 
+        interval="4000" 
+        duration="800"
+        circular="{{true}}"
+        indicator-color="rgba(255, 255, 255, 0.4)"
+        indicator-active-color="rgba(255, 255, 255, 0.9)"
+        previous-margin="15rpx"
+        next-margin="15rpx">
+    <swiper-item wx:for="{{banners}}" wx:key="imageUrl">
+      <view class="banner-item">
+        <image src="{{item.imageUrl}}" mode="aspectFill" bindtap="onBannerTap" data-index="{{index}}"/>
+        <view class="banner-overlay"></view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 服务标题 -->
+  <view class="section-header">
+    <view class="section-title">
+      <text class="title-icon">✨</text>
+      <text class="title-text">精选服务</text>
+    </view>
+    <view class="section-subtitle">为您提供专业贴心的健康服务</view>
+  </view>
+
+  <!-- 服务列表 -->
+  <view class="service-list">
+    <view class="service-item" 
+          wx:for="{{services}}" 
+          wx:key="_id"
+          bindtap="onServiceTap" 
+          data-id="{{item._id}}">
+      <view class="service-image-container">
+        <image class="service-image" src="{{item.images[0] || '/images/service-default.png'}}" mode="aspectFill"/>
+        <view class="image-badge" wx:if="{{item.isHot}}">🔥</view>
+      </view>
+      <view class="service-info">
+        <view class="service-header">
+          <text class="service-name">{{item.name}}</text>
+          <view class="sold-count">
+            <text class="sold-icon">👥</text>
+            <text>{{item.soldCount || 2000}}人已购</text>
+          </view>
+        </view>
+        <text class="service-desc">{{item.brief}}</text>
+        <view class="service-tags" wx:if="{{item.tags}}">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">{{tag}}</text>
+        </view>
+        <view class="service-footer">
+          <view class="price-box">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+            <text class="price-unit">起</text>
+          </view>
+          <view class="buy-btn">
+            <text class="btn-icon">🛒</text>
+            <text>立即购买</text>
+          </view>
+        </view>
+      </view>
+      <view class="service-glow"></view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-section">
+    <view class="loading-more" wx:if="{{hasMore}}">
+      <text wx:if="{{loading}}">⏳ 加载中...</text>
+      <text wx:else bindtap="loadMore">📄 加载更多服务</text>
+    </view>
+    <view class="no-more" wx:else>
+      <text>🎉 已显示全部服务</text>
+    </view>
+  </view>
+</view>

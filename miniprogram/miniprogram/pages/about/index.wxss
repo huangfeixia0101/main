@@ -1,0 +1,196 @@
+.about-container {
+  padding: 30rpx;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* 公司信息区域 */
+.company-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  background: linear-gradient(to right, #4a90e2, #5eb2f9);
+  color: white;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.company-logo {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: white;
+  padding: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.company-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.company-desc {
+  font-size: 28rpx;
+  text-align: center;
+  padding: 0 40rpx;
+  line-height: 1.5;
+}
+
+/* 愿景和使命区域 */
+.vision-mission-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-card {
+  background-color: white;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background-color: #4a90e2;
+  border-radius: 4rpx;
+}
+
+.section-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 团队信息区域 */
+.team-section {
+  margin-bottom: 30rpx;
+}
+
+/* 服务特色区域 */
+.features-section {
+  background-color: white;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30rpx;
+  margin-top: 20rpx;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.feature-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 联系方式区域 */
+.contact-section {
+  background-color: white;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-label {
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-value {
+  flex: 1;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.contact-action {
+  width: 100rpx;
+  font-size: 26rpx;
+  color: #4a90e2;
+  text-align: right;
+}
+
+/* 底部链接区域 */
+.footer-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.footer-link {
+  font-size: 26rpx;
+  color: #4a90e2;
+  padding: 0 20rpx;
+}
+
+.footer-divider {
+  color: #ccc;
+  font-size: 26rpx;
+}
+
+/* 版本信息 */
+.version-info {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 30rpx;
+}
